@@ -5,10 +5,19 @@ import { TEMPLATES, CATEGORIES, templateStats } from '../lib/templates.js'
 
 const byCategory = (a, b) => CATEGORIES.indexOf(a.category) - CATEGORIES.indexOf(b.category)
 
-export default function Templates({ onUse }) {
+export default function Templates({ onUse, workflows = [], onGo }) {
   const [cat, setCat] = useState('todas')
   const [q, setQ] = useState('')
   const [preview, setPreview] = useState(null)
+
+  // Quais modelos já viraram fluxo — evita duplicar sem perceber.
+  const emUso = useMemo(() => {
+    const map = new Map()
+    workflows.forEach((w) => {
+      if (w.templateKey) map.set(w.templateKey, (map.get(w.templateKey) || 0) + 1)
+    })
+    return map
+  }, [workflows])
 
   const list = useMemo(() => {
     const term = q.trim().toLowerCase()
@@ -70,6 +79,11 @@ export default function Templates({ onUse }) {
             >
               <div className="wf-card-top">
                 <div className="wf-title">{t.title}</div>
+                {emUso.get(t.key) > 0 && (
+                  <span className="chip" style={{ color: 'var(--elec-4)', borderColor: 'rgba(93,255,155,0.3)', background: 'rgba(93,255,155,0.1)' }}>
+                    <Check size={12} /> nos seus fluxos
+                  </span>
+                )}
               </div>
               <span className="chip" style={{ color: t.color, borderColor: `${t.color}44`, background: `${t.color}14`, alignSelf: 'flex-start' }}>
                 <span className="dot" />
@@ -99,8 +113,13 @@ export default function Templates({ onUse }) {
                 ))}
               </div>
               <div className="row" style={{ gap: 8, marginTop: 'auto' }}>
-                <button className="btn btn-primary btn-sm grow" style={{ justifyContent: 'center' }} onClick={() => onUse(t)}>
-                  <Plus size={15} /> Usar modelo
+                <button
+                  className={`btn btn-sm grow${emUso.get(t.key) > 0 ? '' : ' btn-primary'}`}
+                  style={{ justifyContent: 'center' }}
+                  onClick={() => onUse(t)}
+                  title={emUso.get(t.key) > 0 ? 'Cria outra cópia deste modelo' : 'Cria um fluxo a partir deste modelo'}
+                >
+                  <Plus size={15} /> {emUso.get(t.key) > 0 ? 'Usar de novo' : 'Usar modelo'}
                 </button>
                 <button className="btn btn-sm" onClick={() => setPreview(t)}>
                   Ver etapas <Right size={14} />

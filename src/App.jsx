@@ -20,6 +20,7 @@ const initial = loadState()
 export default function App() {
   const [workflows, setWorkflows] = useState(initial.workflows)
   const [prefs, setPrefs] = useState({ bg: true, intensity: 0.6, ...(initial.prefs || {}) })
+  const [seededKeys] = useState(initial.seededKeys || [])
   const [view, setView] = useState(() => {
     const hash = window.location.hash.replace('#', '')
     return VIEWS.includes(hash) ? hash : 'painel'
@@ -31,14 +32,16 @@ export default function App() {
 
   // ---- persistência ----
   useEffect(() => {
-    // Não regrava logo na montagem, exceto quando os fluxos iniciais acabaram de ser gerados.
-    if (firstRun.current && !initial.seeded) {
+    // Na montagem só regrava se houve entrega de fluxo novo (primeiro acesso
+    // ou modelo acrescentado depois), para não gravar por gravar.
+    const entregou = initial.seeded || (initial.novos && initial.novos.length > 0)
+    if (firstRun.current && !entregou) {
       firstRun.current = false
       return
     }
     firstRun.current = false
-    saveState({ version: 2, workflows, prefs })
-  }, [workflows, prefs])
+    saveState({ version: 2, workflows, prefs, seededKeys })
+  }, [workflows, prefs, seededKeys])
 
   // ---- navegação por hash ----
   useEffect(() => {
@@ -59,6 +62,21 @@ export default function App() {
     setToasts((t) => [...t, { id, message }])
     setTimeout(() => setToasts((t) => t.filter((x) => x.id !== id)), 3200)
   }, [])
+
+  // Avisa quando modelo novo do código chegou a um navegador que já tinha dados.
+  useEffect(() => {
+    const novos = initial.novos || []
+    if (novos.length === 0 || initial.seeded) return
+    const t = setTimeout(() => {
+      toast(
+        novos.length === 1
+          ? `Fluxo novo adicionado: ${novos[0]}`
+          : `${novos.length} fluxos novos adicionados aos seus fluxos`
+      )
+    }, 600)
+    return () => clearTimeout(t)
+  }, [toast])
+
 
   // ---- ações sobre fluxos ----
   const openNew = useCallback(() => {
@@ -194,7 +212,7 @@ export default function App() {
             <Dashboard workflows={workflows} onOpen={openEdit} onCreate={openNew} onGo={go} />
           )}
           {view === 'fluxos' && <Workflows workflows={workflows} onOpen={openEdit} onCreate={openNew} onGo={go} />}
-          {view === 'modelos' && <Templates onUse={useTemplate} />}
+          {view === 'modelos' && <Templates onUse={useTemplate} workflows={workflows} onGo={go} />}
           {view === 'roadmap' && (
             <Roadmap workflows={workflows} onOpen={openEdit} onCreate={openNew} onSetDates={setDates} />
           )}
