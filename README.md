@@ -27,7 +27,7 @@ npm run preview  # serve o build de produção
 
 ## Biblioteca de modelos
 
-14 checklists, 83 blocos, 509 etapas — a maioria com **nota técnica** explicando o número, a faixa ou o motivo.
+15 checklists, 85 blocos, 519 etapas — a maioria com **nota técnica** explicando o número, a faixa ou o motivo.
 
 ### Impressão 3D — Orca Slicer + PLA
 - **Pré-impressão — do modelo à primeira camada** · 42 etapas — geometria, filamento, máquina, fatiamento, revisão do G-code, primeira camada
@@ -44,6 +44,9 @@ npm run preview  # serve o build de produção
 - **Avaliar a plataforma antes de contratar** · 42 etapas — definir a necessidade, acesso de teste real, teste com professores, referências de outras redes, LGPD, portabilidade dos dados
 - **TR e ETP da contratação** · 44 etapas — traz o caso em andamento: solicitação ao HEAD e ao CEO já feita, retida até a reunião de 27–28
 - **Negociação e fechamento do contrato** · 40 etapas — poder de negociação, preço discriminado, revisão de cláusulas, formalização, gestão do contrato
+
+### Revisão de Itens
+- **Revisão de itens e aulas em vídeo** · 10 etapas — dois blocos: itens normais (leitura, compatibilidade, habilidade, qualidade de imagem, resolução comentada) e aulas em vídeo
 
 ### Hardware & Compras
 - **Orçamento de hardware com carga tributária** · 52 etapas — especificação, cotação com CNPJ, regime tributário e créditos, DIFAL, ST, importação, TCO, comparativo
@@ -104,7 +107,7 @@ src/
     constants.js             status, prioridades, paleta
     utils.js                 datas, progresso, agrupamento, roadmap
     storage.js               localStorage, normalização, import/export
-    templates.js             conteúdo dos 14 modelos
+    templates.js             conteúdo dos 15 modelos
   styles/global.css          design system completo
 ```
 

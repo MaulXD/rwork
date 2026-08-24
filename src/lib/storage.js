@@ -9,6 +9,7 @@ const SEED_KEYS = [
   'educacross-tr-etp',
   'educacross-negociacao',
   'orcamento-hardware',
+  'revisao-itens',
   'relatorio-atividades',
 ]
 

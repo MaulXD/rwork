@@ -8,7 +8,14 @@ import { uid } from './utils.js'
  * um que resolve o problema na hora.
  */
 
-export const CATEGORIES = ['Impressão 3D', 'RTOOLS', 'Educacross', 'Hardware & Compras', 'Registros']
+export const CATEGORIES = [
+  'Impressão 3D',
+  'RTOOLS',
+  'Educacross',
+  'Revisão de Itens',
+  'Hardware & Compras',
+  'Registros',
+]
 
 export const TEMPLATES = [
   // ══════════════════════════════════════════════════════════════════
@@ -943,6 +950,43 @@ export const TEMPLATES = [
           ['Registrar toda falha de entrega por escrito, na hora', 'Reclamação sem registro não existe na hora da renovação.'],
           ['Começar a conversa de renovação 90 dias antes do fim', 'Com dados de adesão e de desempenho na mão. Renovar em cima da hora é renovar sem poder de negociação.'],
           ['Decidir a renovação com base no dado, não no relacionamento'],
+        ],
+      },
+    ],
+  },
+
+  // ══════════════════════════════════════════════════════════════════
+  // REVISÃO DE ITENS
+  // ══════════════════════════════════════════════════════════════════
+  {
+    key: 'revisao-itens',
+    category: 'Revisão de Itens',
+    title: 'Revisão de itens e aulas em vídeo',
+    description:
+      'Passo a passo da revisão: itens normais e itens de aula em vídeo. Duplique e desmarque tudo para rodar no próximo lote.',
+    color: '#ff4fd8',
+    priority: 'media',
+    status: 'concluido',
+    tags: ['revisao', 'itens', 'videoaula'],
+    groups: [
+      {
+        name: 'Itens normais',
+        steps: [
+          ['Ler o item', '', true],
+          ['Ler as alternativas', '', true],
+          ['Verificar compatibilidade', '', true],
+          ['Verificar habilidade correspondente', '', true],
+          ['Ver se precisa renderizar a imagem com uma qualidade superior', '', true],
+          ['Adicionar resolução comentada, recomendações (Claude e DeepSeek)', '', true],
+        ],
+      },
+      {
+        name: 'Aulas em vídeo',
+        steps: [
+          ['Ver as aulas', '', true],
+          ['Ler os itens', '', true],
+          ['Ler as alternativas', '', true],
+          ['Adicionar resolução comentada', '', true],
         ],
       },
     ],
