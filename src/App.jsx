@@ -105,6 +105,13 @@ export default function App() {
     setEditing({ wf, isNew: false })
   }
 
+  const setDates = (id, start, end) => {
+    setWorkflows((list) =>
+      list.map((w) => (w.id === id ? { ...w, start, end, updatedAt: Date.now() } : w))
+    )
+    toast('Datas definidas — o fluxo entrou na linha do tempo')
+  }
+
   const importData = (text) => {
     const list = parseImport(text)
     setWorkflows(list)
@@ -188,7 +195,9 @@ export default function App() {
           )}
           {view === 'fluxos' && <Workflows workflows={workflows} onOpen={openEdit} onCreate={openNew} onGo={go} />}
           {view === 'modelos' && <Templates onUse={useTemplate} />}
-          {view === 'roadmap' && <Roadmap workflows={workflows} onOpen={openEdit} onCreate={openNew} />}
+          {view === 'roadmap' && (
+            <Roadmap workflows={workflows} onOpen={openEdit} onCreate={openNew} onSetDates={setDates} />
+          )}
           {view === 'ajustes' && (
             <Settings
               workflows={workflows}
