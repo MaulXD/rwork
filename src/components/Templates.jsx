@@ -85,6 +85,11 @@ export default function Templates({ onUse }) {
                 <span>
                   <Checklist size={14} /> {st.steps} etapas
                 </span>
+                {st.done > 0 && (
+                  <span style={{ color: t.color }}>
+                    <Check size={14} /> {st.done} já concluídas
+                  </span>
+                )}
               </div>
               <div className="row wrap" style={{ gap: 6 }}>
                 {t.tags.map((x) => (
@@ -127,6 +132,7 @@ export default function Templates({ onUse }) {
             <>
               <span className="hint">
                 {templateStats(preview).groups} blocos · {templateStats(preview).steps} etapas
+                {templateStats(preview).done > 0 && ` · ${templateStats(preview).done} já concluídas`}
               </span>
               <button
                 className="btn btn-primary"
@@ -150,10 +156,12 @@ export default function Templates({ onUse }) {
                 </span>
               </header>
               <ul className="steps">
-                {g.steps.map(([title, note], i) => (
-                  <li className="step" key={i}>
+                {g.steps.map(([title, note, done], i) => (
+                  <li className={`step${done ? ' done' : ''}`} key={i}>
                     <div className="step-main">
-                      <span className="check" aria-hidden="true" />
+                      <span className={`check${done ? ' on' : ''}`} aria-hidden="true">
+                        {done && <Check size={13} />}
+                      </span>
                       <span className="step-title" style={{ whiteSpace: 'normal' }}>
                         {title}
                       </span>

@@ -27,7 +27,7 @@ npm run preview  # serve o build de produção
 
 ## Biblioteca de modelos
 
-13 checklists, 77 blocos, 460 etapas — a maioria com **nota técnica** explicando o número, a faixa ou o motivo.
+14 checklists, 83 blocos, 509 etapas — a maioria com **nota técnica** explicando o número, a faixa ou o motivo.
 
 ### Impressão 3D — Orca Slicer + PLA
 - **Pré-impressão — do modelo à primeira camada** · 42 etapas — geometria, filamento, máquina, fatiamento, revisão do G-code, primeira camada
@@ -40,9 +40,10 @@ npm run preview  # serve o build de produção
 - **Criar uma ferramenta nova** · 46 etapas — escopo, escolha de biblioteca, Web Worker, estados e erros, testes com arquivo grande, deploy na Vercel
 - **Revisão antes de publicar** · 14 etapas — checklist de release da suíte inteira
 
-### Educacross
-- **Entender a plataforma a fundo** · 39 etapas — percorrer cada perfil na prática, limites do produto, requisitos técnicos, LGPD, ensaio de demo
-- **Negociação de preços** · 38 etapas — qualificação, fonte de verba, proposta, enquadramento da compra pública, condução, formalização
+### Educacross — do lado de quem contrata
+- **Avaliar a plataforma antes de contratar** · 42 etapas — definir a necessidade, acesso de teste real, teste com professores, referências de outras redes, LGPD, portabilidade dos dados
+- **TR e ETP da contratação** · 44 etapas — traz o caso em andamento: solicitação ao HEAD e ao CEO já feita, retida até a reunião de 27–28
+- **Negociação e fechamento do contrato** · 40 etapas — poder de negociação, preço discriminado, revisão de cláusulas, formalização, gestão do contrato
 
 ### Hardware & Compras
 - **Orçamento de hardware com carga tributária** · 52 etapas — especificação, cotação com CNPJ, regime tributário e créditos, DIFAL, ST, importação, TCO, comparativo
@@ -103,7 +104,7 @@ src/
     constants.js             status, prioridades, paleta
     utils.js                 datas, progresso, agrupamento, roadmap
     storage.js               localStorage, normalização, import/export
-    templates.js             conteúdo dos 13 modelos
+    templates.js             conteúdo dos 14 modelos
   styles/global.css          design system completo
 ```
 

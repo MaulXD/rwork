@@ -6,6 +6,7 @@ import { TEMPLATES, templateToWorkflow } from './templates.js'
 const SEED_KEYS = [
   'pre-impressao',
   'rtools-nova-ferramenta',
+  'educacross-tr-etp',
   'educacross-negociacao',
   'orcamento-hardware',
   'relatorio-atividades',

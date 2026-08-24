@@ -683,90 +683,183 @@ export const TEMPLATES = [
   },
 
   // ══════════════════════════════════════════════════════════════════
-  // EDUCACROSS
+  // EDUCACROSS — lado de quem contrata
   // ══════════════════════════════════════════════════════════════════
   {
-    key: 'educacross-plataforma',
+    key: 'educacross-avaliacao',
     category: 'Educacross',
-    title: 'Educacross — entender a plataforma a fundo',
+    title: 'Educacross — avaliar a plataforma antes de contratar',
     description:
-      'Roteiro para dominar o produto antes de vender ou implantar: percorrer cada perfil na prática, conhecer os limites, os requisitos técnicos e as objeções que sempre aparecem.',
+      'Due diligence da solução antes de assinar: definir o que precisamos que ela resolva, testar com acesso real, ouvir quem já usa, checar requisitos, LGPD e portabilidade dos dados na saída.',
     color: '#b0ff3d',
     priority: 'alta',
-    tags: ['educacross', 'produto', 'estudo'],
+    tags: ['educacross', 'avaliacao', 'contratacao'],
     groups: [
       {
-        name: '1. Visão geral',
+        name: '1. Definir o que precisamos',
         steps: [
-          ['Escrever com as suas palavras o que a plataforma faz e para quem', 'Se você não consegue explicar em duas frases, não vai conseguir defender o preço depois.'],
-          ['Levantar quais anos/séries e quais áreas do conhecimento são atendidos', 'Confirme na fonte oficial, não por suposição — é a primeira pergunta do coordenador pedagógico.'],
-          ['Entender a proposta pedagógica por trás da gamificação', 'Coordenador não compra "jogo". Compra trilha de aprendizagem com progressão e evidência. Saiba explicar a lógica, não só a mecânica.'],
-          ['Mapear como o conteúdo se relaciona com a BNCC', 'Saiba mostrar na tela onde uma habilidade específica da BNCC aparece. É o que separa apresentação de demonstração.'],
-          ['Listar explicitamente o que a plataforma NÃO faz', 'Conhecer o limite evita a venda que vira problema de implantação e cancelamento no ano seguinte.'],
-          ['Identificar os concorrentes que aparecem nas mesmas licitações', 'Saiba em que você ganha e em que perde, com honestidade, antes que o cliente traga a comparação.'],
+          ['Escrever o problema que queremos resolver, antes de olhar qualquer produto', 'Defasagem em matemática, engajamento, nota do IDEB, formação de professores. Sem isso, a demonstração do fornecedor define a necessidade no lugar da gente.'],
+          ['Definir quantos alunos, quais séries e quais escolas seriam atendidos'],
+          ['Separar requisito obrigatório de requisito desejável', 'Duas listas. A obrigatória elimina fornecedor; a desejável só desempata. Misturar as duas leva a contratar pelo que impressiona, não pelo que resolve.'],
+          ['Definir como vamos medir se deu certo', 'Meta de adesão, evolução de desempenho, prazo de avaliação. Contrato sem critério de sucesso nunca é cancelado por não funcionar.'],
+          ['Levantar o que já temos e que pode conflitar', 'Outra plataforma contratada, material didático, sistema de gestão. Solução sobreposta é dinheiro gasto duas vezes.'],
+          ['Confirmar a fonte de verba e a janela orçamentária', 'PDDE, FUNDEB, recurso próprio, emenda. Avaliar solução sem verba identificada consome tempo de todo mundo.'],
         ],
       },
       {
-        name: '2. Perfis e permissões',
+        name: '2. Avaliar na prática',
         steps: [
-          ['Conseguir um acesso de teste para cada perfil', 'Aluno, professor e gestor. Ler documentação não substitui entrar na tela.'],
-          ['Mapear o que cada perfil enxerga e o que pode fazer'],
-          ['Entender como se cria uma turma e como o aluno é vinculado a ela'],
-          ['Entender como se importa a base de alunos da rede', 'É aqui que a implantação normalmente trava. Saiba o formato exigido e quem na secretaria consegue extrair.'],
-          ['Verificar o que acontece na virada do ano letivo', 'Os alunos avançam de turma sozinhos? O histórico é preservado? A resposta vira argumento de renovação.'],
+          ['Exigir acesso de teste, não apenas demonstração guiada', 'Demonstração mostra o caminho feliz. Só o acesso livre revela o que trava.'],
+          ['Percorrer a plataforma como aluno, do login à conclusão de uma trilha'],
+          ['Percorrer como professor: criar turma, atribuir atividade, ler o resultado'],
+          ['Percorrer como gestor: painel da rede, adesão por escola, relatórios'],
+          ['Cronometrar quanto tempo um professor leva do zero à primeira atividade', 'Se passar de 15 minutos, a adoção cai e o investimento não se paga. Meça, não pergunte.'],
+          ['Verificar como o conteúdo se relaciona com a BNCC', 'Peça para mostrarem na tela onde uma habilidade específica aparece — não aceite só a afirmação no material comercial.'],
+          ['Pedir por escrito a lista do que a plataforma não faz', 'Fornecedor nenhum oferece isso espontaneamente. A resposta, ou a falta dela, já é informação.'],
         ],
       },
       {
-        name: '3. Jornada do aluno',
+        name: '3. Testar com quem vai usar',
         steps: [
-          ['Fazer o percurso completo como aluno, do login à conclusão de uma trilha'],
-          ['Entender como a dificuldade se adapta ao desempenho'],
-          ['Verificar como o aluno é avaliado e o que gera o resultado'],
-          ['Testar no dispositivo que o aluno realmente usa', 'Chromebook da escola, tablet compartilhado, celular do responsável. Testar só no seu notebook esconde o problema real.'],
-          ['Descobrir o comportamento com internet ruim ou sem internet', 'Determinante em rede pública. Tenha a resposta pronta antes de ser perguntado na frente do secretário.'],
-          ['Cronometrar quanto tempo o aluno leva em uma sessão típica', 'O professor precisa saber se cabe em 20 minutos de aula ou se exige a aula inteira.'],
+          ['Testar no equipamento real da escola', 'Chromebook, tablet compartilhado, celular do responsável. Testar no notebook da secretaria esconde o problema que vai aparecer na sala de aula.'],
+          ['Testar na internet real da escola, no horário de pico', 'Banda de escola pública com 30 alunos simultâneos é o teste que importa. Faça antes de assinar.'],
+          ['Verificar o comportamento com internet instável ou sem internet'],
+          ['Colocar dois ou três professores para usar de verdade por uma semana', 'A opinião de quem vai usar todo dia vale mais que qualquer apresentação. E a resistência aparece agora, não depois de assinado.'],
+          ['Testar com alunos de perfis diferentes, incluindo os com mais dificuldade'],
+          ['Verificar os recursos de acessibilidade na prática'],
         ],
       },
       {
-        name: '4. Jornada do professor',
+        name: '4. Checar referências',
         steps: [
-          ['Percorrer o caminho do professor: criar turma, atribuir atividade, ver o resultado'],
-          ['Cronometrar quanto tempo leva do zero até a primeira atividade atribuída', 'Se passar de 15 minutos, a adoção cai — e adoção baixa é o que mata a renovação.'],
-          ['Entender exatamente quais relatórios o professor recebe'],
-          ['Descobrir como o professor identifica o aluno com dificuldade', 'É a função que mais convence professor cético. Saiba chegar nela em três cliques.'],
-          ['Conhecer o material de formação disponível para o professor'],
-          ['Listar o que o professor precisa fazer toda semana para o uso não morrer'],
+          ['Pedir contato de outras redes que já usam', 'Peça você a lista e escolha quem ligar. Referência escolhida pelo fornecedor só fala bem.'],
+          ['Perguntar à referência qual foi a taxa de adesão real depois de um ano', 'Adesão é o número que separa plataforma usada de licença paga e esquecida.'],
+          ['Perguntar o que deu errado na implantação'],
+          ['Perguntar se renovaram e por quê'],
+          ['Verificar contratos anteriores da empresa em portais de transparência', 'Valores praticados com outras redes são públicos e são a melhor referência de preço que existe.'],
         ],
       },
       {
-        name: '5. Jornada do gestor e da secretaria',
+        name: '5. Requisitos técnicos e dados',
         steps: [
-          ['Explorar o painel da rede: uso por escola, por turma e por aluno'],
-          ['Saber extrair o relatório que o secretário vai pedir', 'Normalmente é adesão por escola e evolução de desempenho. Tenha o caminho na ponta da língua.'],
-          ['Entender como acompanhar a adesão ao longo do contrato', 'Adesão baixa detectada no mês 2 é recuperável; detectada no mês 10 é contrato perdido.'],
-          ['Entender como os dados conversam com indicadores externos', 'IDEB, SAEB e avaliações próprias da rede. É a linguagem em que o gestor mede sucesso.'],
-          ['Descobrir como se compara o desempenho entre escolas da mesma rede'],
+          ['Obter por escrito os requisitos técnicos mínimos', 'Navegador, sistema, banda por aluno simultâneo, portas e domínios a liberar no firewall da rede.'],
+          ['Entender como o aluno faz login na escola', 'Senha decorada, QR code ou cartão. É um detalhe pequeno que decide o sucesso do primeiro dia de uso.'],
+          ['Entender como a base de alunos é importada e quem faz isso', 'É onde a implantação normalmente trava. Defina o responsável antes de assinar, não depois.'],
+          ['Exigir a política de privacidade e o parecer de LGPD', 'Dados de menores. O jurídico vai exigir; peça antes para não travar o processo no fim.'],
+          ['Confirmar quem é o controlador e o operador dos dados', 'Define quem responde em caso de incidente. Precisa estar no contrato, não em e-mail.'],
+          ['Verificar a portabilidade dos dados na saída', 'Se não renovarmos, os dados de desempenho voltam em qual formato e em quanto tempo? Sem resposta clara, é aprisionamento.'],
+          ['Perguntar o que acontece com os acessos ao fim do contrato'],
         ],
       },
       {
-        name: '6. Requisitos, dados e suporte',
+        name: '6. Suporte e continuidade',
         steps: [
-          ['Levantar os requisitos técnicos mínimos', 'Navegador, sistema, banda por aluno simultâneo, bloqueios de firewall comuns em rede municipal.'],
-          ['Entender como funciona o login dentro da escola', 'Aluno decora senha? Tem QR code? Cartão? É um detalhe que decide o sucesso do primeiro dia.'],
-          ['Obter a política de privacidade e o parecer de LGPD', 'Dados de menores em compra pública: o jurídico da prefeitura vai pedir. Tenha o documento antes.'],
-          ['Verificar os recursos de acessibilidade', 'É exigência frequente em termo de referência público.'],
-          ['Entender o processo de suporte e o prazo de resposta', 'Saber o SLA real evita prometer o que a operação não entrega.'],
+          ['Obter o SLA de suporte por escrito', 'Canal, horário e prazo de resposta. Prazo dito em reunião não vale em chamado aberto às 8 h da manhã.'],
+          ['Entender o que está incluso de formação de professores', 'Quantas horas, presencial ou remoto, e se há reposição para quem entrar depois.'],
+          ['Verificar se a formação se repete na virada do ano letivo', 'A rotatividade de professores é alta. Formação só no primeiro ano vira plataforma abandonada no segundo.'],
+          ['Confirmar quem é o ponto de contato da nossa conta'],
+          ['Verificar o que acontece na virada do ano letivo dentro da plataforma', 'Alunos avançam de turma sozinhos? O histórico é preservado?'],
+          ['Avaliar a estabilidade da empresa', 'Tempo de mercado, base de clientes e continuidade do produto. Contratar quem pode sumir no meio do ano letivo é risco real.'],
         ],
       },
       {
-        name: '7. Prática',
+        name: '7. Fechar a avaliação',
         steps: [
-          ['Fazer uma demonstração completa gravando a si mesmo', 'Assistir à própria demo é o jeito mais rápido de descobrir onde você trava e onde se enrola.'],
-          ['Escrever as 10 perguntas mais prováveis com a resposta pronta'],
-          ['Preparar a resposta para as objeções recorrentes', 'Internet ruim, professor sem tempo, já temos outra plataforma, verba curta, "vai virar mais uma senha para o aluno esquecer".'],
-          ['Assistir a uma demonstração de alguém mais experiente'],
-          ['Fazer uma demo de teste para um colega e pedir crítica dura'],
-          ['Montar um roteiro de demo de 15 minutos', 'Reunião com secretário raramente dura o que foi agendado. Tenha a versão curta ensaiada.'],
+          ['Preencher a matriz de requisitos obrigatórios com sim ou não'],
+          ['Comparar com pelo menos uma alternativa de mercado', 'Mesmo que a escolha já esteja encaminhada. Comparação documentada é exigência do ETP e protege a decisão.'],
+          ['Registrar os riscos identificados e como mitigar cada um'],
+          ['Escrever a recomendação com o motivo, em uma página'],
+          ['Propor um piloto antes do contrato cheio', 'Uma ou duas escolas por um período curto. Reduz o risco e dá poder de negociação real na hora de escalar.'],
+        ],
+      },
+    ],
+  },
+
+  {
+    key: 'educacross-tr-etp',
+    category: 'Educacross',
+    title: 'Educacross — TR e ETP da contratação',
+    description:
+      'TR e ETP já solicitados ao HEAD e ao CEO. A liberação está retida até a reunião presencial do Carlos, nos dias 27 e 28 — este fluxo guarda o que já foi feito, o que dá para adiantar na espera e o que cobrar depois da decisão.',
+    color: '#ffb547',
+    priority: 'critica',
+    status: 'pausado',
+    start: '2026-08-24',
+    end: '2026-08-28',
+    tags: ['educacross', 'tr', 'etp', 'contratacao'],
+    groups: [
+      {
+        name: '1. Situação atual — já feito',
+        steps: [
+          ['Solicitar o TR ao HEAD', 'Termo de Referência: define o objeto, os requisitos, o modelo de execução e os critérios de pagamento e julgamento da contratação.', true],
+          ['Solicitar o ETP ao HEAD', 'Estudo Técnico Preliminar: é o documento que fundamenta o TR. Pela Lei 14.133/2021, vem antes dele no planejamento da contratação.', true],
+          ['Levar a solicitação ao CEO', '', true],
+          ['Registrar a resposta recebida', 'Ambos os documentos ficam retidos até a reunião presencial. A decisão não é negativa — é adiada.', true],
+          ['Confirmar as datas da reunião presencial do Carlos', 'Dias 27 e 28. É a data que destrava os dois documentos.', true],
+          ['Marcar os dias 27 e 28 na agenda como marco de decisão', 'Sem a data na agenda, a cobrança escorrega para a semana seguinte.'],
+        ],
+      },
+      {
+        name: '2. Adiantar durante a espera',
+        steps: [
+          ['Escrever em uma página o que foi pedido e por quê', 'Quando a liberação vier, o tempo de resposta é curto. Ter o pedido pronto por escrito é o que evita perder a janela.'],
+          ['Registrar a necessidade concreta que motiva a contratação', 'Quantos alunos, quais escolas e qual problema pedagógico. Documento sem necessidade amarrada perde prioridade na fila.'],
+          ['Confirmar a fonte de verba e a janela orçamentária', 'Se o empenho depende do exercício corrente, o atraso na liberação tem custo real — e esse é o argumento mais forte para acelerar depois da reunião.'],
+          ['Reunir os dados técnicos que o ETP vai exigir', 'Requisitos funcionais, requisitos de infraestrutura, acessibilidade e tratamento de dados de menores (LGPD).'],
+          ['Levantar a pesquisa de preços que sustenta o valor estimado', 'A Lei 14.133/2021 admite mais de uma fonte: painel de preços, contratações similares de outros entes, pesquisa direta com fornecedores e sites especializados.'],
+          ['Buscar contratos parecidos já firmados por outras redes', 'Valores públicos de contratações similares são a referência mais defensável para o valor estimado.'],
+          ['Verificar se existe TR ou ETP anterior reaproveitável', 'Documento de contratação parecida poupa semanas. Pergunte ao HEAD se há modelo interno antes de pedir do zero.'],
+          ['Escrever a pergunta objetiva para levar ao Carlos', 'Uma pergunta que se responde com sim, não ou uma data. Pergunta aberta em reunião cheia volta sem decisão.'],
+        ],
+      },
+      {
+        name: '3. Reunião presencial — 27 e 28',
+        steps: [
+          ['Confirmar presença, horário e formato da participação', 'Confirme na véspera. Reunião presencial de CEO muda de horário com frequência.'],
+          ['Apresentar o pedido em uma frase, no início'],
+          ['Obter decisão explícita sobre quem produz o TR e o ETP', 'Equipe interna, jurídico, área técnica ou consultoria. Sem dono definido, o documento não anda.'],
+          ['Obter uma data comprometida de entrega de cada documento', '"Depois da reunião" já foi a resposta uma vez. Desta vez saia com data.'],
+          ['Confirmar a ordem de produção: ETP antes do TR', 'O ETP fundamenta o TR. Produzir na ordem inversa gera retrabalho e inconsistência entre os dois documentos.'],
+          ['Registrar a decisão por escrito no mesmo dia', 'E-mail curto de confirmação para o HEAD e o CEO. É o que transforma acordo verbal em compromisso rastreável.'],
+          ['Atualizar a data de entrega deste fluxo com o prazo acordado', 'A data atual marca só a reunião. Depois da decisão, estenda para o prazo real de entrega.'],
+        ],
+      },
+      {
+        name: '4. ETP — Estudo Técnico Preliminar',
+        steps: [
+          ['Descrever a necessidade que motiva a contratação', 'O problema pedagógico, não o produto. Necessidade escrita como produto é o que gera impugnação por direcionamento.'],
+          ['Levantar os requisitos da contratação', 'Funcionais, técnicos, de acessibilidade e de proteção de dados.'],
+          ['Registrar as alternativas de solução consideradas', 'O ETP precisa demonstrar que houve análise de mercado, não escolha prévia de fornecedor.'],
+          ['Consolidar a pesquisa de preços e o valor estimado'],
+          ['Justificar a solução escolhida com base no levantamento'],
+          ['Estimar quantidades e definir se a contratação será parcelada'],
+          ['Fazer a análise de riscos da contratação'],
+          ['Submeter à revisão jurídica antes de fechar', 'Correção no ETP é barata; correção depois do TR publicado custa o processo inteiro.'],
+        ],
+      },
+      {
+        name: '5. TR — Termo de Referência',
+        steps: [
+          ['Definir o objeto com precisão, a partir do ETP'],
+          ['Especificar os requisitos sem direcionar para marca ou fornecedor', 'Especificação que só um fornecedor atende é o motivo mais comum de impugnação e anulação do processo.'],
+          ['Definir o modelo de execução e a gestão do contrato', 'Quem fiscaliza, com que periodicidade e contra quais evidências.'],
+          ['Definir os critérios de medição e de pagamento', 'Amarrar o pagamento a uso efetivo, e não só a licença emitida, é o que protege a rede de pagar por acesso que ninguém usa.'],
+          ['Exigir no TR os níveis de serviço e as penalidades por descumprimento', 'SLA sem penalidade associada é texto decorativo.'],
+          ['Incluir a obrigação de portabilidade dos dados ao fim do contrato'],
+          ['Definir os critérios de julgamento e de habilitação'],
+          ['Definir prazos, vigência, reajuste e possibilidade de prorrogação'],
+          ['Verificar a coerência entre TR e ETP', 'Divergência entre os dois é apontada em análise jurídica e devolve o processo.'],
+          ['Submeter à revisão final antes de entregar'],
+        ],
+      },
+      {
+        name: '6. Acompanhamento',
+        steps: [
+          ['Cobrar o prazo acordado na data combinada', 'Cobrança na data, não depois dela. Prazo que passa em silêncio vira prazo novo.'],
+          ['Definir agora com quem escalar e em quantos dias, se atrasar', 'Decidir isso no calor do atraso sai pior.'],
+          ['Arquivar a versão final do TR e do ETP'],
+          ['Repassar os documentos a quem conduz a contratação'],
+          ['Atualizar o fluxo de negociação com o andamento'],
         ],
       },
     ],
@@ -775,79 +868,81 @@ export const TEMPLATES = [
   {
     key: 'educacross-negociacao',
     category: 'Educacross',
-    title: 'Educacross — negociação de preços',
+    title: 'Educacross — negociação e fechamento do contrato',
     description:
-      'Da qualificação da oportunidade ao contrato assinado: fonte de verba, montagem da proposta, enquadramento da compra pública, condução da negociação e formalização.',
-    color: '#ffb547',
+      'Do lado de quem compra: montar poder de negociação antes da conversa, cobrar preço discriminado, negociar prazo, escopo e SLA, e fechar um contrato com saída, reajuste e portabilidade definidos.',
+    color: '#22e6ff',
     priority: 'critica',
-    tags: ['educacross', 'negociacao', 'comercial'],
+    tags: ['educacross', 'negociacao', 'contratacao'],
     groups: [
       {
-        name: '1. Qualificar a oportunidade',
+        name: '1. Montar poder antes da conversa',
         steps: [
-          ['Identificar o tipo de comprador', 'Secretaria municipal, escola privada, mantenedora ou grupo. Cada um tem processo de compra, verba e prazo completamente diferentes.'],
-          ['Levantar o número de alunos e de escolas envolvidas', 'É a variável que define o preço. Confirme se é matrícula total da rede ou só os anos que vão usar de fato.'],
-          ['Descobrir quem decide, quem influencia e quem paga', 'Na rede pública quase sempre são três pessoas distintas: o secretário decide, o coordenador pedagógico influencia, o setor de compras executa. Ignorar qualquer uma trava o processo.'],
-          ['Mapear o problema concreto que o cliente quer resolver', 'Nota do IDEB, defasagem em matemática, engajamento, formação de professores. Preço só se sustenta amarrado a um problema declarado.'],
-          ['Confirmar que existe verba e identificar a fonte', 'PDDE, FUNDEB, recurso próprio do município, emenda parlamentar. Sem fonte identificada, não existe negociação — existe conversa.'],
-          ['Levantar a janela do ciclo orçamentário', 'Compra pública tem prazo rígido. Perder o empenho do exercício empurra o contrato inteiro para o ano seguinte.'],
-          ['Verificar se já usaram alguma solução parecida antes', 'Experiência ruim anterior sempre volta disfarçada de objeção de preço lá na frente.'],
+          ['Ter pelo menos uma alternativa real avaliada', 'Alternativa é a única fonte real de poder em negociação. Sem ela, você aceita o que for oferecido.'],
+          ['Levantar o preço que outras redes pagaram', 'Contratos públicos são consultáveis em portais de transparência. É a informação que mais desloca preço numa negociação.'],
+          ['Definir o nosso teto e o nosso alvo antes de sentar', 'Escrito, antes. Definir o teto durante a conversa é como o valor sobe.'],
+          ['Nunca revelar o orçamento disponível primeiro', 'Orçamento revelado vira o preço da proposta. Peça a proposta antes de falar em verba.'],
+          ['Definir o que estamos dispostos a dar em troca de desconto', 'Vigência maior, pagamento antecipado, caso de sucesso publicável, visita de outras redes. Concessão planejada custa menos que concessão improvisada.'],
+          ['Mapear quem decide do nosso lado e o limite de alçada de cada um'],
         ],
       },
       {
-        name: '2. Preparar a proposta',
+        name: '2. Exigir a proposta certa',
         steps: [
-          ['Definir o escopo exato do que está sendo vendido', 'Quantidade de licenças, vigência, formação de professores, suporte, relatórios de acompanhamento. Escopo vago vira desconto exigido depois.'],
-          ['Conhecer o preço de lista e o limite de desconto autorizado antes da reunião', 'Descobrir o seu próprio piso durante a negociação é a forma mais cara de aprender.'],
-          ['Calcular o valor por aluno por ano e por mês', 'É a métrica que o cliente vai usar. Apresente a conta você mesmo, antes que ele a faça sozinho.'],
-          ['Montar pelo menos duas opções de escopo', 'Uma opção única vira sim ou não. Duas ou três mudam a pergunta de "se" para "qual".'],
-          ['Preparar a justificativa de valor com números do próprio cliente', 'Compare com custo de reforço escolar, material didático ou hora-aula da rede. Traduza para a moeda que ele já conhece.'],
-          ['Definir as condições de pagamento aceitáveis'],
-          ['Listar a contrapartida de cada faixa de desconto', 'Desconto sempre em troca de algo: vigência maior, volume maior, pagamento antecipado, caso de sucesso publicável, indicação para outra rede.'],
+          ['Exigir preço discriminado por item', 'Licença por aluno, formação, suporte, implantação, relatórios. Pacote fechado impede negociar a parte cara e esconde onde está a gordura.'],
+          ['Pedir o preço por aluno por ano e por mês', 'É a métrica comparável entre fornecedores. Não aceite proposta só com valor global.'],
+          ['Pedir a proposta em pelo menos dois cenários de volume', 'Saber quanto cai o preço por aluno ao escalar é o que define se vale começar com piloto ou com a rede inteira.'],
+          ['Verificar o que é recorrente e o que é pagamento único', 'Implantação e formação cobradas todo ano viram custo escondido no terceiro ano de contrato.'],
+          ['Perguntar explicitamente o que não está incluído', 'A pergunta precisa ser feita. Custo de treinamento extra e de suporte fora do horário aparece depois se não for perguntado agora.'],
+          ['Exigir validade e condições por escrito', 'Preço de campanha sem prazo escrito costuma evaporar na hora de assinar.'],
         ],
       },
       {
-        name: '3. Enquadrar a compra (setor público)',
+        name: '3. Conduzir a negociação',
         steps: [
-          ['Confirmar a modalidade de contratação', 'Pregão eletrônico, dispensa por valor, inexigibilidade ou adesão a ata de registro de preços. Cada uma tem prazo e documentação próprios.'],
-          ['Verificar se cabe adesão a uma ata de registro de preços existente', 'Quando existe, é o caminho mais rápido — poupa meses de processo licitatório.'],
-          ['Levantar toda a documentação de habilitação exigida', 'Certidões, atestados de capacidade técnica, regularidade fiscal. Documento vencido para o processo na véspera.'],
-          ['Ler o termo de referência com atenção ao que descreve a solução', 'Termo escrito sob medida para o concorrente é a forma mais comum de perder antes de começar. Participe da fase de estudo técnico quando for possível.'],
-          ['Reunir os documentos de LGPD e acessibilidade', 'Tratamento de dados de menores é ponto de atenção do jurídico da prefeitura. Ter o parecer pronto acelera semanas.'],
-          ['Anotar os prazos de publicação, impugnação e sessão'],
+          ['Deixar o fornecedor apresentar o número primeiro'],
+          ['Não aceitar a primeira proposta, mesmo que pareça boa', 'A primeira proposta é construída para ter margem de recuo. Recusar é o mínimo esperado dos dois lados.'],
+          ['Ancorar no menor preço encontrado na pesquisa', 'Contrato público de outra rede com valor menor é um argumento que não tem resposta fácil.'],
+          ['Negociar escopo antes de negociar preço', 'Tirar o que não vamos usar reduz o valor sem desgastar a relação — e sem o fornecedor cortar qualidade para cobrir desconto.'],
+          ['Trocar prazo por preço', 'Contrato de 2 ou 3 anos normalmente derruba o valor anual. Só aceite se houver cláusula de saída.'],
+          ['Exigir o SLA por escrito na proposta, com penalidade', 'Prazo de suporte prometido em reunião não vale nada em chamado aberto.'],
+          ['Registrar cada concessão dada e recebida', 'Uma linha por concessão, na hora. É o que impede a negociação de andar só para um lado.'],
+          ['Encerrar toda reunião com o próximo passo e uma data'],
+          ['Não fechar na reunião — levar para revisar', 'A pressa é sempre do outro lado. Vinte e quatro horas de revisão custam nada e evitam cláusula ruim.'],
         ],
       },
       {
-        name: '4. Conduzir a negociação',
+        name: '4. Revisar o contrato',
         steps: [
-          ['Apresentar valor antes de falar em preço', 'Quem abre com preço negocia preço pelo resto da reunião.'],
-          ['Ancorar na opção de escopo maior', 'A primeira referência numérica molda todas as seguintes. Se você não ancorar, o cliente ancora.'],
-          ['Perguntar o orçamento disponível em vez de tentar adivinhar'],
-          ['Nunca conceder desconto sem contrapartida', 'Desconto de graça ensina o cliente a pedir mais e desvaloriza o que já foi combinado.'],
-          ['Registrar por escrito cada concessão dada e recebida', 'Uma linha por concessão, na hora. É o que impede a negociação de virar leilão contra você mesmo.'],
-          ['Separar preço de custo ao tratar a objeção', 'Faça a conta do custo por aluno por mês na frente do cliente. Quase sempre é menor do que ele imaginava.'],
-          ['Confirmar por escrito, no mesmo dia, tudo que foi acordado verbalmente'],
-          ['Encerrar toda reunião com o próximo passo e uma data definida', 'Reunião que termina em "depois eu te aviso" morre em silêncio.'],
+          ['Conferir se o contrato reflete exatamente o que foi negociado', 'O que ficou só no e-mail não vale. Se importa, entra no contrato.'],
+          ['Verificar a cláusula de reajuste', 'Qual índice, com que periodicidade e a partir de quando. Reajuste em aberto é cheque em branco.'],
+          ['Verificar a cláusula de rescisão e a multa', 'Precisamos poder sair se não funcionar. Multa alta demais transforma erro de escolha em prisão de dois anos.'],
+          ['Confirmar a portabilidade dos dados na saída', 'Formato e prazo de devolução dos dados de desempenho, por escrito.'],
+          ['Verificar as cláusulas de LGPD e a definição de controlador e operador'],
+          ['Verificar o que acontece se a adesão ficar abaixo do previsto', 'Cláusula de revisão por baixa adesão é rara, mas é o que protege de pagar por licença ociosa.'],
+          ['Submeter à revisão jurídica antes de assinar'],
         ],
       },
       {
-        name: '5. Fechar e formalizar',
+        name: '5. Formalizar',
         steps: [
-          ['Enviar a proposta formal com validade explícita', 'Proposta sem prazo de validade fica em cima da mesa até o preço não valer mais.'],
-          ['Confirmar quem assina e o que precisa acontecer antes da assinatura'],
-          ['Acompanhar o empenho e a emissão do contrato', 'No setor público, contrato assinado sem empenho não vira pagamento.'],
-          ['Fixar as datas de início e da formação dos professores'],
-          ['Registrar os valores e as condições finais no CRM ou na planilha'],
-          ['Arquivar a proposta assinada e o contrato'],
+          ['Confirmar o enquadramento da contratação', 'Pregão, dispensa, inexigibilidade ou adesão a ata de registro de preços. Cada um tem prazo e documentação próprios.'],
+          ['Reunir a documentação de habilitação do fornecedor', 'Certidões de regularidade fiscal e atestados de capacidade técnica. Documento vencido para o processo na véspera.'],
+          ['Acompanhar o empenho e a emissão do contrato', 'Contrato assinado sem empenho não vira pagamento.'],
+          ['Definir as datas de início, implantação e formação dos professores'],
+          ['Nomear o gestor e o fiscal do contrato', 'Contrato sem fiscal nomeado é contrato que ninguém acompanha.'],
+          ['Arquivar contrato, proposta e a documentação da negociação'],
         ],
       },
       {
-        name: '6. Depois do fechamento',
+        name: '6. Gerir o contrato',
         steps: [
-          ['Repassar o contexto completo para quem vai implantar', 'Promessa feita na negociação que a implantação desconhece é o primeiro passo do cancelamento.'],
-          ['Agendar o primeiro acompanhamento de uso'],
-          ['Marcar a conversa de renovação com 90 dias de antecedência', 'Com dados de adesão e desempenho na mão. Renovação discutida em cima da hora vira negociação de preço de novo.'],
-          ['Pedir caso de sucesso ou indicação quando o resultado aparecer'],
+          ['Agendar a primeira revisão de adesão em 30 dias', 'Adesão baixa detectada no mês 1 é recuperável; no mês 10 é dinheiro perdido.'],
+          ['Acompanhar o SLA de suporte contra o que foi contratado', 'Registre cada chamado e o prazo real de resposta. É o que dá base para exigir penalidade ou desconto.'],
+          ['Comparar os resultados com os critérios de sucesso definidos na avaliação'],
+          ['Registrar toda falha de entrega por escrito, na hora', 'Reclamação sem registro não existe na hora da renovação.'],
+          ['Começar a conversa de renovação 90 dias antes do fim', 'Com dados de adesão e de desempenho na mão. Renovar em cima da hora é renovar sem poder de negociação.'],
+          ['Decidir a renovação com base no dado, não no relacionamento'],
         ],
       },
     ],
@@ -1041,12 +1136,18 @@ export const TEMPLATES = [
   },
 ]
 
-/** Converte um modelo em um fluxo pronto para salvar. */
+/**
+ * Converte um modelo em um fluxo pronto para salvar.
+ *
+ * A terceira posição da etapa (`[título, nota, true]`) marca a etapa como já
+ * concluída — usado nos modelos que registram um caso em andamento, e não um
+ * roteiro em branco.
+ */
 export function templateToWorkflow(tpl, overrides = {}) {
   const steps = []
   tpl.groups.forEach((g) => {
-    g.steps.forEach(([title, note]) => {
-      steps.push({ id: uid(), title, note: note || '', group: g.name, done: false })
+    g.steps.forEach(([title, note, done]) => {
+      steps.push({ id: uid(), title, note: note || '', group: g.name, done: Boolean(done) })
     })
   })
 
@@ -1054,12 +1155,12 @@ export function templateToWorkflow(tpl, overrides = {}) {
     id: uid(),
     title: tpl.title,
     description: tpl.description,
-    status: 'planejado',
+    status: tpl.status || 'planejado',
     priority: tpl.priority || 'media',
     color: tpl.color,
     tags: [...tpl.tags],
-    start: '',
-    end: '',
+    start: tpl.start || '',
+    end: tpl.end || '',
     steps,
     templateKey: tpl.key,
     createdAt: Date.now(),
@@ -1069,9 +1170,11 @@ export function templateToWorkflow(tpl, overrides = {}) {
 }
 
 export function templateStats(tpl) {
+  const all = tpl.groups.flatMap((g) => g.steps)
   return {
     groups: tpl.groups.length,
-    steps: tpl.groups.reduce((n, g) => n + g.steps.length, 0),
+    steps: all.length,
+    done: all.filter((s) => s[2]).length,
   }
 }
 
