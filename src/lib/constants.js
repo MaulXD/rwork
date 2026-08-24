@@ -1,4 +1,6 @@
-export const STORAGE_KEY = 'rwork.state.v1'
+// v2: modelo de etapas ganhou `group` e `note`; a virada da chave descarta
+// os fluxos de exemplo genéricos da v1 e recarrega os modelos reais.
+export const STORAGE_KEY = 'rwork.state.v2'
 
 export const STATUS = {
   ideia: { label: 'Ideia', color: '#8ea3cc' },

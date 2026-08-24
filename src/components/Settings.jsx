@@ -12,7 +12,7 @@ export default function Settings({ workflows, prefs, onPrefs, onImport, onReset,
     const stamp = new Date().toISOString().slice(0, 10)
     download(
       `rwork-${stamp}.json`,
-      JSON.stringify({ app: 'RWork', version: 1, exportedAt: new Date().toISOString(), workflows }, null, 2)
+      JSON.stringify({ app: 'RWork', version: 2, exportedAt: new Date().toISOString(), workflows }, null, 2)
     )
     toast('Backup exportado com sucesso')
   }
