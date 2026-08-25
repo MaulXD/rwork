@@ -7,6 +7,7 @@ import Roadmap from './components/Roadmap.jsx'
 import Settings from './components/Settings.jsx'
 import Templates from './components/Templates.jsx'
 import WorkflowEditor, { emptyWorkflow } from './components/WorkflowEditor.jsx'
+import EasterEggs from './components/EasterEggs.jsx'
 import { BoltFill, Menu, Check, Plus } from './components/icons.jsx'
 import { loadState, saveState, parseImport, seedWorkflows } from './lib/storage.js'
 import { templateToWorkflow } from './lib/templates.js'
@@ -29,6 +30,8 @@ export default function App() {
   const [editing, setEditing] = useState(null) // { wf, isNew }
   const [menuOpen, setMenuOpen] = useState(false)
   const [toasts, setToasts] = useState([])
+  const [centelha, setCentelha] = useState(0)
+  const [tempestade, setTempestade] = useState(false)
   const firstRun = useRef(true)
 
   // ---- persistência ----
@@ -178,7 +181,7 @@ export default function App() {
 
   return (
     <>
-      <ElectricBackground enabled={prefs.bg} intensity={prefs.intensity} />
+      <ElectricBackground enabled={prefs.bg} intensity={tempestade ? 1 : prefs.intensity} />
 
       <div className="topbar">
         <button className="icon-btn" onClick={() => setMenuOpen(true)} aria-label="Abrir menu">
@@ -207,6 +210,7 @@ export default function App() {
           onCreate={openNew}
           open={menuOpen}
           onClose={() => setMenuOpen(false)}
+          onCentelha={() => setCentelha((n) => n + 1)}
         />
 
         <main className="main">
@@ -242,6 +246,14 @@ export default function App() {
           onClose={() => setEditing(null)}
         />
       )}
+
+      <EasterEggs
+        trigger={centelha}
+        onStorm={() => {
+          setTempestade(true)
+          setTimeout(() => setTempestade(false), 9000)
+        }}
+      />
 
       <div className="toast-wrap">
         {toasts.map((t) => (

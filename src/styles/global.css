@@ -836,6 +836,55 @@ input[type='range']:disabled { cursor: not-allowed; }
 .tl-title { font-size: 14px; font-weight: 600; }
 .tl-meta { font-size: 12.5px; color: var(--text-3); margin-top: 2px; }
 
+/* ---------- Centelhas (easter eggs) ---------- */
+.centelha { display: flex; flex-direction: column; align-items: center; gap: 11px; text-align: center; }
+
+.centelha-mark {
+  width: 56px; height: 56px; border-radius: 18px;
+  display: grid; place-items: center;
+  background: linear-gradient(140deg, var(--elec-2), var(--elec-1));
+  color: #04050c;
+  box-shadow: 0 0 34px -6px var(--elec-1);
+  animation: centelha-pulso 2.6s ease-in-out infinite;
+}
+@keyframes centelha-pulso {
+  0%, 100% { box-shadow: 0 0 30px -8px var(--elec-1); transform: rotate(-3deg); }
+  50%      { box-shadow: 0 0 44px 0 var(--elec-2); transform: rotate(3deg); }
+}
+
+.centelha-nome {
+  font-size: 20px; font-weight: 800; letter-spacing: -0.5px; line-height: 1.2;
+  background: linear-gradient(92deg, #fff, var(--elec-1) 70%, var(--elec-2));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.centelha-epoca { font-size: 12px; color: var(--text-3); letter-spacing: 0.6px; }
+
+.centelha-fato {
+  font-size: 14.5px; line-height: 1.68; color: var(--text-2);
+  max-width: 44ch;
+  margin-top: 4px;
+}
+
+.centelha-lenda {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 7px 12px; border-radius: 99px;
+  background: rgba(255, 181, 71, 0.1);
+  border: 1px solid rgba(255, 181, 71, 0.26);
+  color: var(--amber);
+  font-size: 12px; line-height: 1.45; text-align: left;
+}
+
+.centelha-fim {
+  font-size: 13px; font-weight: 600; color: var(--elec-4);
+  padding: 9px 14px; border-radius: var(--r-sm);
+  background: rgba(93, 255, 155, 0.1);
+  border: 1px solid rgba(93, 255, 155, 0.26);
+}
+
+/* o raio da marca vira botão: mantém o visual, ganha o toque */
+button.brand-mark { cursor: pointer; padding: 0; border: none; }
+button.brand-mark:active { transform: scale(0.92); }
+
 /* ---------- Toast ---------- */
 .toast-wrap {
   position: fixed; bottom: 22px; right: 22px; z-index: 200;

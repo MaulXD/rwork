@@ -73,6 +73,20 @@ Na aba **Etapas** do fluxo: progresso geral e por bloco, recolher bloco, marcar 
 | `/` | Focar a busca |
 | `Esc` | Fechar a janela aberta |
 
+## Centelhas
+
+Espalhadas pelo site há **32 curiosidades sobre filósofos**, com três gatilhos:
+
+| Gatilho | Como |
+| --- | --- |
+| Palavra secreta | Digite `sofia` fora de qualquer campo de texto |
+| Código Konami | ↑ ↑ ↓ ↓ ← → ← → B A — dispara junto uma tempestade elétrica de 9 s no fundo |
+| Marca | Sete cliques seguidos no raio da barra lateral |
+
+Cada centelha encontrada fica registrada, e o modal mostra o placar da coleção. O que é **tradição antiga sem fonte contemporânea** vem marcado como tal — anedota boa não vira fato só porque é boa.
+
+Há também uma dica no console do navegador.
+
 ## O fundo elétrico
 
 [`src/components/ElectricBackground.jsx`](src/components/ElectricBackground.jsx) desenha em um único `<canvas>`:
@@ -99,6 +113,7 @@ src/
     WorkflowCard.jsx         card de fluxo
     WorkflowEditor.jsx       abas Etapas e Detalhes, blocos, notas, reset
     Templates.jsx            biblioteca de modelos + prévia
+    EasterEggs.jsx           centelhas: gatilhos e coleção
     Roadmap.jsx              linha do tempo
     Settings.jsx             dados e preferências
     ui.jsx                   modal, barra, chips, estado vazio, stat
@@ -107,6 +122,7 @@ src/
     constants.js             status, prioridades, paleta
     utils.js                 datas, progresso, agrupamento, roadmap
     storage.js               localStorage, normalização, import/export
+    philosophers.js          as 32 centelhas
     templates.js             conteúdo dos 15 modelos
   styles/global.css          design system completo
 ```

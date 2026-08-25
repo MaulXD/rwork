@@ -1,3 +1,4 @@
+import { useRef } from 'react'
 import { BoltFill, Dashboard, Flow, Route, Gear, Plus, Layers } from './icons.jsx'
 import { Bar } from './ui.jsx'
 import { progressOf } from '../lib/utils.js'
@@ -10,7 +11,19 @@ const NAV = [
   { key: 'ajustes', label: 'Ajustes', Icon: Gear },
 ]
 
-export default function Sidebar({ view, onGo, workflows, onCreate, open, onClose }) {
+export default function Sidebar({ view, onGo, workflows, onCreate, open, onClose, onCentelha }) {
+  // Sete cliques seguidos no raio revelam uma centelha.
+  const cliques = useRef({ n: 0, ultimo: 0 })
+  const bater = () => {
+    const agora = Date.now()
+    cliques.current.n = agora - cliques.current.ultimo < 900 ? cliques.current.n + 1 : 1
+    cliques.current.ultimo = agora
+    if (cliques.current.n >= 7) {
+      cliques.current.n = 0
+      onCentelha?.()
+    }
+  }
+
   const ativos = workflows.filter((w) => w.status === 'ativo').length
   const emCurso = workflows.filter((w) => w.status !== 'concluido')
   const media = emCurso.length ? Math.round(emCurso.reduce((n, w) => n + progressOf(w), 0) / emCurso.length) : 0
@@ -29,9 +42,14 @@ export default function Sidebar({ view, onGo, workflows, onCreate, open, onClose
   return (
     <aside className={`sidebar${open ? ' open' : ''}`}>
       <div className="brand">
-        <div className="brand-mark">
+        <button
+          className="brand-mark"
+          onClick={bater}
+          aria-label="RWork"
+          title="RWork"
+        >
           <BoltFill size={22} />
-        </div>
+        </button>
         <div>
           <div className="brand-name">RWork</div>
           <div className="brand-sub">Fluxos & Roadmaps</div>
