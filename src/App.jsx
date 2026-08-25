@@ -21,6 +21,7 @@ export default function App() {
   const [workflows, setWorkflows] = useState(initial.workflows)
   const [prefs, setPrefs] = useState({ bg: true, intensity: 0.6, ...(initial.prefs || {}) })
   const [seededKeys] = useState(initial.seededKeys || [])
+  const [datesPlanned] = useState(initial.datesPlanned !== false)
   const [view, setView] = useState(() => {
     const hash = window.location.hash.replace('#', '')
     return VIEWS.includes(hash) ? hash : 'painel'
@@ -34,14 +35,15 @@ export default function App() {
   useEffect(() => {
     // Na montagem só regrava se houve entrega de fluxo novo (primeiro acesso
     // ou modelo acrescentado depois), para não gravar por gravar.
-    const entregou = initial.seeded || (initial.novos && initial.novos.length > 0)
+    const entregou =
+      initial.seeded || (initial.novos && initial.novos.length > 0) || initial.datados > 0
     if (firstRun.current && !entregou) {
       firstRun.current = false
       return
     }
     firstRun.current = false
-    saveState({ version: 2, workflows, prefs, seededKeys })
-  }, [workflows, prefs, seededKeys])
+    saveState({ version: 2, workflows, prefs, seededKeys, datesPlanned })
+  }, [workflows, prefs, seededKeys, datesPlanned])
 
   // ---- navegação por hash ----
   useEffect(() => {
@@ -65,14 +67,14 @@ export default function App() {
 
   // Avisa quando modelo novo do código chegou a um navegador que já tinha dados.
   useEffect(() => {
+    if (initial.seeded) return
     const novos = initial.novos || []
-    if (novos.length === 0 || initial.seeded) return
+    const datados = initial.datados || 0
+    if (novos.length === 0 && datados === 0) return
     const t = setTimeout(() => {
-      toast(
-        novos.length === 1
-          ? `Fluxo novo adicionado: ${novos[0]}`
-          : `${novos.length} fluxos novos adicionados aos seus fluxos`
-      )
+      if (novos.length === 1) toast(`Fluxo novo adicionado: ${novos[0]}`)
+      else if (novos.length > 1) toast(`${novos.length} fluxos novos adicionados`)
+      if (datados > 0) toast(`${datados} fluxos ganharam datas no roadmap — ajuste como quiser`)
     }, 600)
     return () => clearTimeout(t)
   }, [toast])

@@ -1,6 +1,6 @@
 import { STORAGE_KEY } from './constants.js'
 import { uid } from './utils.js'
-import { TEMPLATES, templateToWorkflow } from './templates.js'
+import { TEMPLATES, templateToWorkflow, planDates } from './templates.js'
 
 /** Fluxos que devem existir na conta — vindos dos modelos reais. */
 const SEED_KEYS = [
@@ -23,8 +23,29 @@ const emptyState = () => ({
   version: 2,
   workflows: [],
   seededKeys: [],
+  datesPlanned: false,
   createdAt: Date.now(),
 })
+
+/**
+ * Dá a janela de datas do modelo aos fluxos que ainda não têm prazo.
+ *
+ * Roda uma única vez por navegador (`datesPlanned`) e só toca em fluxo com
+ * início ou entrega em branco — data que o usuário definiu nunca é
+ * sobrescrita, e nenhuma etapa marcada é alterada.
+ */
+function applyPlannedDates(workflows) {
+  let mudou = 0
+  const out = workflows.map((w) => {
+    if (w.start && w.end) return w
+    const tpl = TEMPLATES.find((t) => t.key === w.templateKey)
+    if (!tpl || !tpl.plan) return w
+    const { start, end } = planDates(tpl.plan)
+    mudou += 1
+    return { ...w, start: w.start || start, end: w.end || end }
+  })
+  return { workflows: out, mudou }
+}
 
 /** Garante que qualquer fluxo carregado tenha todos os campos esperados. */
 function normalizeWorkflow(w) {
@@ -74,6 +95,7 @@ export function loadState() {
         ...emptyState(),
         workflows: seedWorkflows(),
         seededKeys: [...SEED_KEYS],
+        datesPlanned: true,
         seeded: true,
       }
     }
@@ -92,12 +114,22 @@ export function loadState() {
     // seja definitivo — sem isso ele voltaria na carga seguinte.
     const jaPresentes = SEED_KEYS.filter((key) => workflows.some((w) => w.templateKey === key))
 
+    let todos = [...novos, ...workflows]
+    let datados = 0
+    if (!parsed.datesPlanned) {
+      const r = applyPlannedDates(todos)
+      todos = r.workflows
+      datados = r.mudou
+    }
+
     return {
       ...emptyState(),
       ...parsed,
-      workflows: [...novos, ...workflows],
+      workflows: todos,
       seededKeys: [...new Set([...seededKeys, ...jaPresentes, ...pending])],
+      datesPlanned: true,
       novos: novos.map((w) => w.title),
+      datados,
     }
   } catch (err) {
     console.warn('[RWork] não foi possível ler o armazenamento local:', err)
