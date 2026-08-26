@@ -911,6 +911,27 @@ input[type='range']:disabled { cursor: not-allowed; }
 .maq-x { padding: 6px 9px 6px 4px !important; opacity: 0.5; }
 .maq-x:hover { opacity: 1; color: var(--danger) !important; }
 
+/* linha pronta para colar na planilha */
+.linha-planilha {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 14px; flex-wrap: wrap;
+  padding: 13px 15px;
+  border-radius: var(--r-md);
+  background: rgba(3, 5, 14, 0.7);
+  border: 1px solid var(--stroke);
+}
+.linha-cols { display: flex; gap: 22px; flex-wrap: wrap; }
+.linha-cols span {
+  display: flex; flex-direction: column; gap: 3px;
+  font-family: var(--mono); font-size: 13.5px; color: var(--text);
+}
+.linha-cols i {
+  font-style: normal;
+  font-family: var(--font);
+  font-size: 10px; letter-spacing: 1.2px; text-transform: uppercase;
+  color: var(--text-3); font-weight: 700;
+}
+
 /* ---------- Protocolo de treinamento ---------- */
 .perfil-linha { display: flex; gap: 14px; align-items: baseline; flex-wrap: wrap; }
 .perfil-rotulo {

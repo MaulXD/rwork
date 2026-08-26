@@ -23,7 +23,7 @@ npm run preview  # serve o build de produção
 | **Fluxos** | Todos os seus fluxos, com busca (título, descrição, etapa ou tag), filtro por status e tag, e ordenação por recentes / prazo / progresso / prioridade / A–Z. |
 | **Modelos** | Biblioteca de checklists prontos. "Usar modelo" cria uma cópia editável nos seus fluxos. |
 | **Roadmap** | Linha do tempo em meses. Cada barra vai do início à entrega, a parte preenchida é o progresso real das etapas e a linha rosa marca hoje. |
-| **Setup de PCs** | Checklist oficial de preparação de notebook Linux no padrão Thep, com progresso por máquina, comandos prontos para copiar e download do `bloquear-sites.sh`. |
+| **Setup de PCs** | Checklist de preparação de notebook Linux no padrão Thep, com progresso por máquina, comandos prontos para copiar, download do `bloquear-sites.sh` e cadastro na planilha de inventário. |
 | **Treinamento TI** | Protocolo de treinamento do estagiário de TI: 8 blocos em 4 fases, com metas marcáveis, critérios de conclusão e checkpoints. |
 | **Ajustes** | Exportar/importar backup `.json`, recarregar os fluxos iniciais, apagar tudo, e controlar o fundo elétrico. |
 
@@ -86,7 +86,16 @@ O checklist de preparação de notebook Linux (Mint e Lux Bellatrix), em 8 bloco
 - **Download do `bloquear-sites.sh`** direto da página, no passo em que ele é usado.
 - Campos de ID do AnyDesk, quem validou e data de entrega.
 
-**As credenciais não estão no código.** A senha padrão e a senha de fábrica do root são campos preenchidos por quem usa e guardados apenas naquele navegador — o repositório e o deploy são públicos, e a senha do AnyDesk dá acesso remoto às máquinas. O arquivo original `checklist-setup-linux-thep.md`, que traz as senhas em texto, está no `.gitignore`.
+#### Planilha de inventário
+
+A página conversa com a [planilha de inventário](https://docs.google.com/spreadsheets/d/14F4f4FTx5tM54QxXz6kAKVYEQiRx6qCUBDb0TNRba2g/edit?gid=0#gid=0) — colunas `PC | anydesk | Modelo | Data`.
+
+- **Leitura direta:** a planilha é pública e o endpoint CSV devolve `Access-Control-Allow-Origin`, então a página lê as 482 máquinas no navegador. Dá para buscar por número, ID do AnyDesk ou modelo, e copiar um ID com um clique.
+- **Aviso de duplicidade:** ao abrir uma máquina cujo número já existe na planilha, a página mostra o AnyDesk e o modelo já cadastrados.
+- **Escrita:** o Google não aceita gravação anônima. Quem grava é um Apps Script publicado como aplicativo web pela conta dona da planilha — o código e o passo a passo estão dentro da própria página, em *configurar envio*. Com a URL colada, o botão grava direto (e atualiza a linha se o PC já existir, em vez de duplicar).
+- **Sem o Apps Script**, o botão **copiar linha** entrega o registro em TSV, pronto para colar na planilha.
+
+As senhas ficam nos arquivos de dados e são editáveis na página, com a alteração salva no navegador. O `checklist-setup-linux-thep.md` original segue no `.gitignore` por ser o documento de trabalho.
 
 ### Treinamento TI
 

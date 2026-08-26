@@ -4,13 +4,18 @@
  * Os comandos usam marcadores substituídos em tempo de renderização:
  *   {PC}     número da máquina no inventário
  *   {SENHA}  senha padrão definida pela TI
- *   {ROOT}   senha atual do root, antes da troca
+ *   {ROOT}   senha de fábrica do root, antes da troca
  *
- * Nenhuma credencial fica no código: os valores vivem só no navegador de
- * quem usa a página. O repositório e o deploy são públicos.
+ * As senhas padrão ficam aqui por decisão do Raul, e continuam editáveis na
+ * página (a alteração fica salva no navegador de quem usa).
  */
 
 export const SETUP_VERSAO = 'Linux Mint e Linux Lux Bellatrix (Lenovo)'
+
+export const SENHA_PADRAO = 'Tautologia@'
+export const SENHA_ROOT_FABRICA = '123'
+
+export const MODELOS = ['Multi', 'LENOVO', 'Asus', 'positivo', 'Dell', 'HP', 'Outro']
 
 export const BLOCOS = [
   {
@@ -31,8 +36,8 @@ export const BLOCOS = [
     titulo: 'Trocar a senha do root',
     resumo: 'A máquina chega com a senha de fábrica. Trocar é o primeiro passo de segurança.',
     itens: [
-      { id: 'su', texto: 'Entrar como root', code: 'su -', nota: 'Use a senha atual de fábrica, informada no topo da página.' },
-      { id: 'passwd', texto: 'Trocar a senha', code: 'passwd', nota: 'Digitar a senha padrão duas vezes. O terminal não mostra nada enquanto você digita — é normal.' },
+      { id: 'su', texto: 'Entrar como root', code: 'su -', nota: 'Usar a senha de fábrica: {ROOT}' },
+      { id: 'passwd', texto: 'Trocar a senha', code: 'passwd', nota: 'Digitar {SENHA} duas vezes. O terminal não mostra nada enquanto você digita — é normal.' },
       { id: 'exit', texto: 'Sair do root', code: 'exit' },
     ],
   },
@@ -41,13 +46,13 @@ export const BLOCOS = [
     titulo: 'Criar os usuários',
     resumo: 'Dois usuários: um de manutenção com sudo, um de uso diário sem sudo.',
     itens: [
-      { id: 'adm-criar', texto: 'Criar o usuário de administração', code: 'sudo adduser thep-adm' },
+      { id: 'adm-criar', texto: 'Criar o usuário de administração', code: 'sudo adduser thep-adm', nota: 'Senha: {SENHA}' },
       { id: 'adm-sudo', texto: 'Dar permissão de administrador a ele', code: 'sudo usermod -aG sudo thep-adm' },
       {
         id: 'user-criar',
         texto: 'Criar o usuário de uso diário',
         code: 'sudo adduser thep-not-{PC}',
-        nota: 'Sempre em letras minúsculas.',
+        nota: 'Sempre em letras minúsculas. Senha: {SENHA}. NÃO adicionar este usuário ao grupo sudo.',
       },
       {
         id: 'user-sem-sudo',
@@ -161,6 +166,6 @@ export function preencher(texto, { pc, senha, root }) {
   if (!texto) return texto
   return texto
     .replaceAll('{PC}', pc || 'xxxx')
-    .replaceAll('{SENHA}', senha || '<senha-padrão>')
-    .replaceAll('{ROOT}', root || '<senha-de-fábrica>')
+    .replaceAll('{SENHA}', senha || SENHA_PADRAO)
+    .replaceAll('{ROOT}', root || SENHA_ROOT_FABRICA)
 }
