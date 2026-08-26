@@ -3,3 +3,12 @@ dist
 .DS_Store
 *.local
 .vite
+
+# Contém credenciais reais (senha de root, senha padrão e a do AnyDesk).
+# O repositório e o deploy são públicos — este arquivo fica só na máquina.
+# A página "Setup de PCs" cobre o mesmo conteúdo, com as senhas em campos
+# guardados apenas no navegador de quem usa.
+checklist-setup-linux-thep.md
+
+# Cópia de trabalho na raiz. A versão versionada e servida é public/bloquear-sites.sh.
+/bloquear-sites.sh

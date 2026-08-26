@@ -836,6 +836,179 @@ input[type='range']:disabled { cursor: not-allowed; }
 .tl-title { font-size: 14px; font-weight: 600; }
 .tl-meta { font-size: 12.5px; color: var(--text-3); margin-top: 2px; }
 
+/* ---------- Blocos de código com copiar ---------- */
+.code {
+  position: relative;
+  border-radius: var(--r-md);
+  background: rgba(3, 5, 14, 0.86);
+  border: 1px solid var(--stroke);
+  margin-left: 32px;
+  overflow: hidden;
+}
+.code pre {
+  margin: 0;
+  padding: 13px 15px;
+  overflow-x: auto;
+  font-family: var(--mono);
+  font-size: 12.8px;
+  line-height: 1.72;
+  color: #b9e8ff;
+}
+.code code { font-family: inherit; white-space: pre; }
+
+.code-copy {
+  position: absolute; top: 8px; right: 8px;
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 5px 10px; border-radius: 8px;
+  font-size: 11.5px; font-weight: 600;
+  background: rgba(18, 24, 46, 0.94);
+  border: 1px solid var(--stroke-strong);
+  color: var(--text-2);
+  opacity: 0; transition: opacity 0.2s var(--ease), color 0.2s var(--ease);
+}
+.code:hover .code-copy, .code-copy:focus-visible { opacity: 1; }
+.code-copy:hover { color: var(--elec-1); border-color: var(--elec-1); }
+
+/* ---------- Setup de PCs ---------- */
+.setup-num {
+  display: inline-grid; place-items: center;
+  width: 26px; height: 26px; border-radius: 8px;
+  background: rgba(34, 230, 255, 0.14);
+  color: var(--elec-1);
+  font-family: var(--mono); font-size: 12px; font-weight: 700;
+  flex-shrink: 0;
+}
+
+.setup-item {
+  display: flex; flex-direction: column; gap: 9px;
+  padding: 13px;
+  border-radius: var(--r-md);
+  background: rgba(10, 14, 30, 0.55);
+  border: 1px solid var(--stroke);
+  transition: border-color 0.2s var(--ease), opacity 0.2s var(--ease);
+}
+.setup-item:hover { border-color: var(--stroke-strong); }
+.setup-item.done { opacity: 0.55; }
+.setup-item.done .step-title { text-decoration: line-through; color: var(--text-3); }
+
+.maq-chip {
+  display: inline-flex; align-items: center;
+  border-radius: 99px;
+  border: 1px solid var(--stroke);
+  background: var(--surface);
+  overflow: hidden;
+  transition: all 0.2s var(--ease);
+}
+.maq-chip button {
+  padding: 6px 12px;
+  font-size: 12.5px; font-weight: 600;
+  color: var(--text-2);
+}
+.maq-chip .mono { color: var(--text-3); font-size: 11px; }
+.maq-chip:hover { border-color: var(--stroke-strong); }
+.maq-chip.on { border-color: transparent; background: linear-gradient(100deg, var(--elec-1), var(--elec-2)); }
+.maq-chip.on button, .maq-chip.on .mono { color: #04050c; }
+.maq-x { padding: 6px 9px 6px 4px !important; opacity: 0.5; }
+.maq-x:hover { opacity: 1; color: var(--danger) !important; }
+
+/* ---------- Protocolo de treinamento ---------- */
+.perfil-linha { display: flex; gap: 14px; align-items: baseline; flex-wrap: wrap; }
+.perfil-rotulo {
+  min-width: 92px; flex-shrink: 0;
+  font-size: 11px; letter-spacing: 1.3px; text-transform: uppercase;
+  color: var(--text-3); font-weight: 700;
+}
+.perfil-valor { font-size: 14px; color: var(--text-2); line-height: 1.55; flex: 1; min-width: 200px; }
+
+.regra { display: flex; gap: 13px; align-items: flex-start; }
+.regra-num {
+  display: grid; place-items: center; flex-shrink: 0;
+  width: 24px; height: 24px; border-radius: 8px;
+  background: rgba(124, 92, 255, 0.16);
+  color: var(--elec-2);
+  font-size: 12px; font-weight: 700;
+}
+.regra-titulo { font-size: 14.5px; font-weight: 600; line-height: 1.4; }
+
+.fase-head { display: flex; align-items: center; gap: 12px; margin-top: 8px; }
+.fase-barra {
+  width: 4px; height: 24px; border-radius: 99px; flex-shrink: 0;
+  background: var(--accent, var(--elec-1));
+  box-shadow: 0 0 14px var(--accent, var(--elec-1));
+}
+
+.bloco-objetivo {
+  font-size: 14.5px; line-height: 1.6; color: var(--text);
+  padding-left: 12px;
+  border-left: 2px solid color-mix(in srgb, var(--accent, #22e6ff) 45%, transparent);
+}
+.bloco-rotulo {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 11px; letter-spacing: 1.3px; text-transform: uppercase;
+  color: var(--text-3); font-weight: 700;
+}
+.bloco-rotulo svg { color: var(--elec-1); }
+
+.lista-pontos, .lista-numerada { display: flex; flex-direction: column; gap: 7px; }
+.lista-pontos li, .lista-numerada li {
+  position: relative;
+  padding-left: 18px;
+  font-size: 14px; line-height: 1.6; color: var(--text-2);
+}
+.lista-pontos li::before {
+  content: ''; position: absolute; left: 4px; top: 9px;
+  width: 5px; height: 5px; border-radius: 99px;
+  background: var(--accent, var(--elec-1));
+}
+.lista-numerada { counter-reset: passo; }
+.lista-numerada li { padding-left: 26px; counter-increment: passo; }
+.lista-numerada li::before {
+  content: counter(passo); position: absolute; left: 0; top: 1px;
+  font-family: var(--mono); font-size: 11.5px; font-weight: 700;
+  color: var(--accent, var(--elec-1));
+}
+
+.criterio {
+  padding: 13px 15px;
+  border-radius: var(--r-md);
+  background: rgba(93, 255, 155, 0.06);
+  border: 1px solid rgba(93, 255, 155, 0.2);
+}
+.criterio p { font-size: 14px; line-height: 1.6; color: var(--text-2); }
+
+.bloco-aviso {
+  padding: 12px 15px;
+  border-radius: var(--r-md);
+  background: rgba(255, 181, 71, 0.08);
+  border: 1px solid rgba(255, 181, 71, 0.24);
+  color: var(--amber);
+  font-size: 13.5px; line-height: 1.6;
+}
+
+.anexo {
+  padding: 14px 16px;
+  border-radius: var(--r-md);
+  background: rgba(10, 14, 30, 0.55);
+  border: 1px solid var(--stroke);
+}
+
+.chip-off:hover { border-color: var(--stroke-strong) !important; color: var(--text-2) !important; }
+
+/* ---------- Tabela ---------- */
+.tabela-scroll { overflow-x: auto; }
+.tabela { width: 100%; border-collapse: collapse; min-width: 460px; }
+.tabela th {
+  text-align: left; padding: 10px 12px;
+  font-size: 11px; letter-spacing: 1.2px; text-transform: uppercase;
+  color: var(--text-3); font-weight: 700;
+  border-bottom: 1px solid var(--stroke);
+}
+.tabela td {
+  padding: 12px; font-size: 14px;
+  border-bottom: 1px solid rgba(120, 160, 255, 0.07);
+}
+.tabela tr:last-child td { border-bottom: none; }
+
 /* ---------- Centelhas (easter eggs) ---------- */
 .centelha { display: flex; flex-direction: column; align-items: center; gap: 11px; text-align: center; }
 
@@ -972,6 +1145,10 @@ button.brand-mark:active { transform: scale(0.92); }
   .bg-scan { display: none; }
   .step-note { margin-left: 33px; }
   .step-note-edit { margin-left: 33px; width: calc(100% - 33px); }
+  .code { margin-left: 0; }
+  .code-copy { opacity: 1; }
+  .code pre { font-size: 12px; padding-top: 34px; }
+  .perfil-rotulo { min-width: 0; }
   .plan-row { flex-wrap: wrap; }
   .plan-body { flex-basis: 100%; }
   .plan-bar { max-width: none; }

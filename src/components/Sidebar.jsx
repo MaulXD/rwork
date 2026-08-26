@@ -1,5 +1,5 @@
 import { useRef } from 'react'
-import { BoltFill, Dashboard, Flow, Route, Gear, Plus, Layers } from './icons.jsx'
+import { BoltFill, Dashboard, Flow, Route, Gear, Plus, Layers, Save, Target } from './icons.jsx'
 import { Bar } from './ui.jsx'
 import { progressOf } from '../lib/utils.js'
 
@@ -8,8 +8,14 @@ const NAV = [
   { key: 'fluxos', label: 'Fluxos', Icon: Flow },
   { key: 'modelos', label: 'Modelos', Icon: Layers },
   { key: 'roadmap', label: 'Roadmap', Icon: Route },
-  { key: 'ajustes', label: 'Ajustes', Icon: Gear },
 ]
+
+const NAV_THEP = [
+  { key: 'setup-pcs', label: 'Setup de PCs', Icon: Save },
+  { key: 'treinamento', label: 'Treinamento TI', Icon: Target },
+]
+
+const NAV_FIM = [{ key: 'ajustes', label: 'Ajustes', Icon: Gear }]
 
 export default function Sidebar({ view, onGo, workflows, onCreate, open, onClose, onCentelha }) {
   // Sete cliques seguidos no raio revelam uma centelha.
@@ -67,6 +73,22 @@ export default function Sidebar({ view, onGo, workflows, onCreate, open, onClose
             <Icon size={18} />
             {label}
             {counts[key] > 0 && <span className="nav-count">{counts[key]}</span>}
+          </button>
+        ))}
+
+        <div className="nav-label">Thep</div>
+        {NAV_THEP.map(({ key, label, Icon }) => (
+          <button key={key} className={`nav-item${view === key ? ' active' : ''}`} onClick={() => go(key)}>
+            <Icon size={18} />
+            {label}
+          </button>
+        ))}
+
+        <div className="nav-label">Sistema</div>
+        {NAV_FIM.map(({ key, label, Icon }) => (
+          <button key={key} className={`nav-item${view === key ? ' active' : ''}`} onClick={() => go(key)}>
+            <Icon size={18} />
+            {label}
           </button>
         ))}
       </nav>

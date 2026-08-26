@@ -6,6 +6,8 @@ import Workflows from './components/Workflows.jsx'
 import Roadmap from './components/Roadmap.jsx'
 import Settings from './components/Settings.jsx'
 import Templates from './components/Templates.jsx'
+import SetupPcs from './components/SetupPcs.jsx'
+import Treinamento from './components/Treinamento.jsx'
 import WorkflowEditor, { emptyWorkflow } from './components/WorkflowEditor.jsx'
 import EasterEggs from './components/EasterEggs.jsx'
 import { BoltFill, Menu, Check, Plus } from './components/icons.jsx'
@@ -14,7 +16,7 @@ import { templateToWorkflow } from './lib/templates.js'
 import { uid } from './lib/utils.js'
 import { PALETTE } from './lib/constants.js'
 
-const VIEWS = ['painel', 'fluxos', 'modelos', 'roadmap', 'ajustes']
+const VIEWS = ['painel', 'fluxos', 'modelos', 'roadmap', 'setup-pcs', 'treinamento', 'ajustes']
 
 const initial = loadState()
 
@@ -219,6 +221,8 @@ export default function App() {
           )}
           {view === 'fluxos' && <Workflows workflows={workflows} onOpen={openEdit} onCreate={openNew} onGo={go} />}
           {view === 'modelos' && <Templates onUse={useTemplate} workflows={workflows} onGo={go} />}
+          {view === 'setup-pcs' && <SetupPcs />}
+          {view === 'treinamento' && <Treinamento onGo={go} />}
           {view === 'roadmap' && (
             <Roadmap workflows={workflows} onOpen={openEdit} onCreate={openNew} onSetDates={setDates} />
           )}

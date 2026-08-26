@@ -23,6 +23,8 @@ npm run preview  # serve o build de produção
 | **Fluxos** | Todos os seus fluxos, com busca (título, descrição, etapa ou tag), filtro por status e tag, e ordenação por recentes / prazo / progresso / prioridade / A–Z. |
 | **Modelos** | Biblioteca de checklists prontos. "Usar modelo" cria uma cópia editável nos seus fluxos. |
 | **Roadmap** | Linha do tempo em meses. Cada barra vai do início à entrega, a parte preenchida é o progresso real das etapas e a linha rosa marca hoje. |
+| **Setup de PCs** | Checklist oficial de preparação de notebook Linux no padrão Thep, com progresso por máquina, comandos prontos para copiar e download do `bloquear-sites.sh`. |
+| **Treinamento TI** | Protocolo de treinamento do estagiário de TI: 8 blocos em 4 fases, com metas marcáveis, critérios de conclusão e checkpoints. |
 | **Ajustes** | Exportar/importar backup `.json`, recarregar os fluxos iniciais, apagar tudo, e controlar o fundo elétrico. |
 
 ## Biblioteca de modelos
@@ -73,6 +75,25 @@ Na aba **Etapas** do fluxo: progresso geral e por bloco, recolher bloco, marcar 
 | `/` | Focar a busca |
 | `Esc` | Fechar a janela aberta |
 
+## Páginas da Thep
+
+### Setup de PCs
+
+O checklist de preparação de notebook Linux (Mint e Lux Bellatrix), em 8 blocos e 28 itens.
+
+- **Progresso por máquina**: cada notebook tem o seu checklist; o número do PC entra sozinho nos comandos (`sudo adduser thep-not-0042`, `THEP-NOT-0042`).
+- **Comandos prontos** em bloco de código com botão de copiar.
+- **Download do `bloquear-sites.sh`** direto da página, no passo em que ele é usado.
+- Campos de ID do AnyDesk, quem validou e data de entrega.
+
+**As credenciais não estão no código.** A senha padrão e a senha de fábrica do root são campos preenchidos por quem usa e guardados apenas naquele navegador — o repositório e o deploy são públicos, e a senha do AnyDesk dá acesso remoto às máquinas. O arquivo original `checklist-setup-linux-thep.md`, que traz as senhas em texto, está no `.gitignore`.
+
+### Treinamento TI
+
+O protocolo de formação do estagiário de TI: 4 fases, 8 blocos, 24 metas marcáveis.
+
+Cada bloco traz objetivo, atividades, metas com checkbox, critério de conclusão e um selo de *checkpoint* para o supervisor liberar o próximo. Os blocos 5 e 6 remetem ao Anexo A, que é a própria página de Setup de PCs.
+
 ## Centelhas
 
 Espalhadas pelo site há **32 curiosidades sobre filósofos**, com três gatilhos:
@@ -114,6 +135,8 @@ src/
     WorkflowEditor.jsx       abas Etapas e Detalhes, blocos, notas, reset
     Templates.jsx            biblioteca de modelos + prévia
     EasterEggs.jsx           centelhas: gatilhos e coleção
+    SetupPcs.jsx             setup de PCs, progresso por máquina
+    Treinamento.jsx          protocolo de treinamento
     Roadmap.jsx              linha do tempo
     Settings.jsx             dados e preferências
     ui.jsx                   modal, barra, chips, estado vazio, stat
@@ -123,8 +146,12 @@ src/
     utils.js                 datas, progresso, agrupamento, roadmap
     storage.js               localStorage, normalização, import/export
     philosophers.js          as 32 centelhas
+    setupPcs.js              checklist de setup de notebook
+    treinamento.js           protocolo de treinamento de TI
     templates.js             conteúdo dos 15 modelos
   styles/global.css          design system completo
+public/
+  bloquear-sites.sh          script servido para download
 ```
 
 Dependências: apenas `react` e `react-dom`. Ícones, gráficos e a linha do tempo do roadmap são feitos à mão.
