@@ -24,7 +24,7 @@ npm run preview  # serve o build de produção
 | **Modelos** | Biblioteca de checklists prontos. "Usar modelo" cria uma cópia editável nos seus fluxos. |
 | **Roadmap** | Linha do tempo em meses. Cada barra vai do início à entrega, a parte preenchida é o progresso real das etapas e a linha rosa marca hoje. |
 | **Setup de PCs** | Checklist de preparação de notebook Linux no padrão Thep, com progresso por máquina, comandos prontos para copiar, download do `bloquear-sites.sh` e cadastro na planilha de inventário. |
-| **Treinamento TI** | Protocolo de treinamento do estagiário de TI: 8 blocos em 4 fases, com metas marcáveis, critérios de conclusão e checkpoints. |
+| **Treinamento TI** | Protocolo de treinamento do estagiário de TI: 7 blocos em 4 fases, com metas marcáveis, critérios de conclusão e checkpoints. |
 | **Ajustes** | Exportar/importar backup `.json`, recarregar os fluxos iniciais, apagar tudo, e controlar o fundo elétrico. |
 
 ## Biblioteca de modelos
@@ -99,9 +99,9 @@ As senhas ficam nos arquivos de dados e são editáveis na página, com a altera
 
 ### Treinamento TI
 
-O protocolo de formação do estagiário de TI: 4 fases, 8 blocos, 24 metas marcáveis.
+O protocolo de formação do estagiário de TI: 4 fases, 7 blocos, 21 metas marcáveis.
 
-Cada bloco traz objetivo, atividades, metas com checkbox, critério de conclusão e um selo de *checkpoint* para o supervisor liberar o próximo. Os blocos 5 e 6 remetem ao Anexo A, que é a própria página de Setup de PCs.
+Cada bloco traz objetivo, atividades, metas com checkbox, critério de conclusão e um selo de *checkpoint* para o supervisor liberar o próximo. Os blocos de Linux remetem ao Anexo A, que é a própria página de Setup de PCs.
 
 ## Centelhas
 

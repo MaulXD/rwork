@@ -1,7 +1,7 @@
 /**
  * Protocolo de Treinamento — Estagiário de TI (Thep).
  *
- * Oito blocos progressivos em quatro fases. Sem prazo fixo: cada bloco leva o
+ * Sete blocos progressivos em quatro fases. Sem prazo fixo: cada bloco leva o
  * tempo que precisar, e só se avança ao cumprir o critério de conclusão.
  */
 
@@ -47,10 +47,7 @@ export const FASES = [
         objetivo: 'Conhecer a Thep, criar os acessos e aprender a navegar no Thep Edu por completo.',
         atividades: [
           'Apresentação da empresa, do setor de TI e da rotina de trabalho',
-          'Criação de acessos: e-mail, Thep Edu e sistema de chamados, se houver',
           'Navegação completa no Thep Edu como operador: módulos, perfis de usuário, fluxos principais',
-          'Entender a estrutura de cadastros — alunos, turmas, professores, conteúdos — e o impacto de um dado errado',
-          'Regra crítica: como funciona backup e reversão antes de alterar qualquer cadastro',
           'Acompanhar o supervisor fazendo correções reais, apenas observando e anotando',
         ],
         metas: [
@@ -62,25 +59,8 @@ export const FASES = [
           'Consegue explicar, sem consultar, o que cada módulo do Thep Edu faz e qual é o fluxo de uma correção segura: backup → alteração → verificação.',
       },
       {
-        id: 'b2',
-        numero: 2,
-        titulo: 'Correção de cadastros e dados',
-        objetivo: 'Começar as correções reais, das de menor risco para as de maior impacto.',
-        atividades: [
-          'Corrigir cadastros reais de baixo risco, com revisão do supervisor antes de salvar; depois, revisão por amostragem',
-          'Criar um log de correções: o que corrigiu, quando e por quê',
-          'Aprender a identificar padrões de erro nos dados — o que aparece com mais frequência e por quê',
-        ],
-        metas: [
-          { id: 'b2-m1', texto: '20+ correções de cadastro realizadas e registradas' },
-          { id: 'b2-m2', texto: 'Zero correções revertidas por erro dele na reta final do bloco' },
-          { id: 'b2-m3', texto: 'Log de correções em uso' },
-        ],
-        criterio: 'Taxa de erro próxima de zero nas correções verificadas por amostragem.',
-      },
-      {
         id: 'b3',
-        numero: 3,
+        numero: 2,
         titulo: 'Chamados, testes e conteúdo pedagógico',
         objetivo: 'Operar o fluxo completo de chamados e a validação do sistema.',
         atividades: [
@@ -108,7 +88,7 @@ export const FASES = [
     blocos: [
       {
         id: 'b4',
-        numero: 4,
+        numero: 3,
         titulo: 'Inventário, limpeza, cabeamento e estoque',
         objetivo: 'Dominar a parte manual: organização, limpeza e infraestrutura física do parque.',
         atividades: [
@@ -136,7 +116,7 @@ export const FASES = [
     blocos: [
       {
         id: 'b5',
-        numero: 5,
+        numero: 4,
         titulo: 'Fundamentos de hardware + Linux Mint',
         objetivo: 'Entender o que há dentro da máquina e fazer a primeira formatação completa.',
         atividades: [
@@ -158,7 +138,7 @@ export const FASES = [
       },
       {
         id: 'b6',
-        numero: 6,
+        numero: 5,
         titulo: 'Linux Lux Bellatrix (Lenovo)',
         objetivo: 'Dominar o setup do Bellatrix nas máquinas Lenovo, incluindo as particularidades do fabricante.',
         atividades: [
@@ -179,7 +159,7 @@ export const FASES = [
       },
       {
         id: 'b7',
-        numero: 7,
+        numero: 6,
         titulo: 'Windows',
         objetivo: 'Instalar e configurar Windows no padrão Thep, para os casos em que for necessário.',
         atividades: [
@@ -207,7 +187,7 @@ export const FASES = [
     blocos: [
       {
         id: 'b8',
-        numero: 8,
+        numero: 7,
         titulo: 'Rotina integrada e avaliação final',
         objetivo: 'Operar a rotina real completa, alternando entre as frentes, e consolidar a documentação.',
         atividades: [
