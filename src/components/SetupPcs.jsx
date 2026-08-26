@@ -322,21 +322,22 @@ export default function SetupPcs() {
         </div>
       )}
 
-      {!atual ? (
+      {!atual && (
         <div className="panel spark-top">
           <Empty
             icon={<Layers size={30} />}
-            title="Escolha ou crie uma máquina"
-            text="O checklist é preenchido por máquina: o número entra nos comandos e o progresso de cada notebook fica separado."
+            title="O passo a passo está logo abaixo"
+            text="Dá para consultar do jeito que está. Escolhendo uma máquina, o número dela entra nos comandos no lugar de xxxx e o progresso passa a ser guardado por notebook."
             action={
               <button className="btn btn-primary" onClick={novaMaquina}>
-                <Plus size={17} /> Nova máquina
+                <Plus size={17} /> Escolher máquina
               </button>
             }
           />
         </div>
-      ) : (
-        <>
+      )}
+
+      {atual && (
           <div className="panel spark-top">
             <div className="panel-pad">
               <div className="row between wrap" style={{ gap: 12, marginBottom: 11 }}>
@@ -362,86 +363,90 @@ export default function SetupPcs() {
               )}
             </div>
           </div>
+      )}
 
-          {BLOCOS.map((b, i) => {
-            const bFeitos = b.itens.filter((it) => maquina.feitos[it.id]).length
-            const completo = bFeitos === b.itens.length
+      {/* ── passo a passo: visível com ou sem máquina escolhida ── */}
+        {BLOCOS.map((b, i) => {
+          const bFeitos = b.itens.filter((it) => maquina.feitos[it.id]).length
+          const completo = bFeitos === b.itens.length
 
-            return (
-              <section className="panel spark-top" key={b.id}>
-                <div className="panel-head">
-                  <h3>
-                    <span className="setup-num">{String(i + 1).padStart(2, '0')}</span>
-                    {b.titulo}
-                  </h3>
-                  <span className="mono" style={{ fontSize: 12.5, color: completo ? 'var(--elec-4)' : 'var(--text-3)' }}>
-                    {bFeitos}/{b.itens.length}
-                  </span>
-                </div>
+          return (
+            <section className="panel spark-top" key={b.id}>
+              <div className="panel-head">
+                <h3>
+                  <span className="setup-num">{String(i + 1).padStart(2, '0')}</span>
+                  {b.titulo}
+                </h3>
+                <span className="mono" style={{ fontSize: 12.5, color: completo ? 'var(--elec-4)' : 'var(--text-3)' }}>
+                  {bFeitos}/{b.itens.length}
+                </span>
+              </div>
 
-                <div className="panel-pad col" style={{ gap: 12 }}>
-                  {b.resumo && <p className="hint" style={{ marginTop: -2 }}>{b.resumo}</p>}
+              <div className="panel-pad col" style={{ gap: 12 }}>
+                {b.resumo && <p className="hint" style={{ marginTop: -2 }}>{b.resumo}</p>}
 
-                  {b.script && (
-                    <a className="btn btn-sm" href="/bloquear-sites.sh" download style={{ alignSelf: 'flex-start' }}>
-                      <Download size={15} /> Baixar bloquear-sites.sh
-                    </a>
-                  )}
+                {b.script && (
+                  <a className="btn btn-sm" href="/bloquear-sites.sh" download style={{ alignSelf: 'flex-start' }}>
+                    <Download size={15} /> Baixar bloquear-sites.sh
+                  </a>
+                )}
 
-                  {b.itens.map((it) => {
-                    const done = !!maquina.feitos[it.id]
-                    return (
-                      <div className={`setup-item${done ? ' done' : ''}`} key={it.id}>
-                        <div className="step-main">
-                          <button
-                            className={`check${done ? ' on' : ''}`}
-                            onClick={() => alternar(it.id)}
-                            aria-label={done ? 'Desmarcar' : 'Marcar como feito'}
-                          >
-                            <Check size={13} />
-                          </button>
-                          <span className="step-title" style={{ whiteSpace: 'normal' }}>
-                            {preencher(it.texto, vars)}
-                          </span>
-                        </div>
-
-                        {it.code && <CodeBlock code={preencher(it.code, vars)} />}
-                        {it.nota && <p className="step-note">{preencher(it.nota, vars)}</p>}
-
-                        {it.campo === 'anydeskId' && (
-                          <div className="row wrap" style={{ gap: 10, marginLeft: 32 }}>
-                            <input
-                              className="input mono"
-                              style={{ width: 'auto', minWidth: 210 }}
-                              value={maquina.anydeskId}
-                              onChange={(e) => setMaquina({ anydeskId: e.target.value.replace(/\D/g, '') })}
-                              placeholder="ID do AnyDesk — 9 dígitos"
-                              inputMode="numeric"
-                              maxLength={12}
-                            />
-                            <select
-                              className="select"
-                              style={{ width: 'auto' }}
-                              value={maquina.modelo}
-                              onChange={(e) => setMaquina({ modelo: e.target.value })}
-                              aria-label="Modelo"
-                            >
-                              {MODELOS.map((m) => (
-                                <option key={m} value={m}>
-                                  {m}
-                                </option>
-                              ))}
-                            </select>
-                          </div>
-                        )}
+                {b.itens.map((it) => {
+                  const done = !!maquina.feitos[it.id]
+                  return (
+                    <div className={`setup-item${done ? ' done' : ''}`} key={it.id}>
+                      <div className="step-main">
+                        <button
+                          className={`check${done ? ' on' : ''}`}
+                          onClick={() => alternar(it.id)}
+                          aria-label={done ? 'Desmarcar' : 'Marcar como feito'}
+                        >
+                          <Check size={13} />
+                        </button>
+                        <span className="step-title" style={{ whiteSpace: 'normal' }}>
+                          {preencher(it.texto, vars)}
+                        </span>
                       </div>
-                    )
-                  })}
-                </div>
-              </section>
-            )
-          })}
 
+                      {it.code && <CodeBlock code={preencher(it.code, vars)} />}
+                      {it.nota && <p className="step-note">{preencher(it.nota, vars)}</p>}
+
+                      {it.campo === 'anydeskId' && (
+                        <div className="row wrap" style={{ gap: 10, marginLeft: 32 }}>
+                          <input
+                            className="input mono"
+                            style={{ width: 'auto', minWidth: 210 }}
+                            value={maquina.anydeskId}
+                            onChange={(e) => setMaquina({ anydeskId: e.target.value.replace(/\D/g, '') })}
+                            placeholder="ID do AnyDesk — 9 dígitos"
+                            inputMode="numeric"
+                            maxLength={12}
+                          />
+                          <select
+                            className="select"
+                            style={{ width: 'auto' }}
+                            value={maquina.modelo}
+                            onChange={(e) => setMaquina({ modelo: e.target.value })}
+                            aria-label="Modelo"
+                          >
+                            {MODELOS.map((m) => (
+                              <option key={m} value={m}>
+                                {m}
+                              </option>
+                            ))}
+                          </select>
+                        </div>
+                      )}
+                    </div>
+                  )
+                })}
+              </div>
+            </section>
+          )
+        })}
+
+      {atual && (
+        <>
           {/* ── cadastro na planilha ── */}
           <div className="panel spark-top">
             <div className="panel-head">
