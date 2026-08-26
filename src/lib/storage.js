@@ -1,6 +1,6 @@
 import { STORAGE_KEY } from './constants.js'
 import { uid } from './utils.js'
-import { TEMPLATES, templateToWorkflow, planDates } from './templates.js'
+import { TEMPLATES, templateToWorkflow } from './templates.js'
 
 /** Fluxos que devem existir na conta — vindos dos modelos reais. */
 const SEED_KEYS = [
@@ -23,26 +23,23 @@ const emptyState = () => ({
   version: 2,
   workflows: [],
   seededKeys: [],
-  datesPlanned: false,
+  datesCleared: false,
   createdAt: Date.now(),
 })
 
 /**
- * Dá a janela de datas do modelo aos fluxos que ainda não têm prazo.
+ * Limpa os prazos que a versão anterior gerava sozinha.
  *
- * Roda uma única vez por navegador (`datesPlanned`) e só toca em fluxo com
- * início ou entrega em branco — data que o usuário definiu nunca é
- * sobrescrita, e nenhuma etapa marcada é alterada.
+ * Roda uma única vez por navegador (`datesCleared`) e só alcança fluxo vindo
+ * de modelo — o que o usuário criou à mão fica intacto. Nenhuma etapa marcada
+ * é tocada: só `start` e `end` saem.
  */
-function applyPlannedDates(workflows) {
+function clearPlannedDates(workflows) {
   let mudou = 0
   const out = workflows.map((w) => {
-    if (w.start && w.end) return w
-    const tpl = TEMPLATES.find((t) => t.key === w.templateKey)
-    if (!tpl || !tpl.plan) return w
-    const { start, end } = planDates(tpl.plan)
+    if (!w.templateKey || (!w.start && !w.end)) return w
     mudou += 1
-    return { ...w, start: w.start || start, end: w.end || end }
+    return { ...w, start: '', end: '' }
   })
   return { workflows: out, mudou }
 }
@@ -95,7 +92,7 @@ export function loadState() {
         ...emptyState(),
         workflows: seedWorkflows(),
         seededKeys: [...SEED_KEYS],
-        datesPlanned: true,
+        datesCleared: true,
         seeded: true,
       }
     }
@@ -115,11 +112,11 @@ export function loadState() {
     const jaPresentes = SEED_KEYS.filter((key) => workflows.some((w) => w.templateKey === key))
 
     let todos = [...novos, ...workflows]
-    let datados = 0
-    if (!parsed.datesPlanned) {
-      const r = applyPlannedDates(todos)
+    let limpos = 0
+    if (!parsed.datesCleared) {
+      const r = clearPlannedDates(todos)
       todos = r.workflows
-      datados = r.mudou
+      limpos = r.mudou
     }
 
     return {
@@ -127,9 +124,9 @@ export function loadState() {
       ...parsed,
       workflows: todos,
       seededKeys: [...new Set([...seededKeys, ...jaPresentes, ...pending])],
-      datesPlanned: true,
+      datesCleared: true,
       novos: novos.map((w) => w.title),
-      datados,
+      limpos,
     }
   } catch (err) {
     console.warn('[RWork] não foi possível ler o armazenamento local:', err)

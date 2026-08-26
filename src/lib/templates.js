@@ -1,4 +1,4 @@
-import { uid, toISO, today } from './utils.js'
+import { uid } from './utils.js'
 
 /**
  * Modelos de fluxo prontos.
@@ -23,7 +23,6 @@ export const TEMPLATES = [
   // ══════════════════════════════════════════════════════════════════
   {
     key: 'pre-impressao',
-    plan: { offset: 2, duration: 5 },
     category: 'Impressão 3D',
     title: 'Pré-impressão — do modelo à primeira camada',
     description:
@@ -423,7 +422,6 @@ export const TEMPLATES = [
   // ══════════════════════════════════════════════════════════════════
   {
     key: 'rtools-nova-ferramenta',
-    plan: { offset: 14, duration: 45 },
     category: 'RTOOLS',
     title: 'RTOOLS — criar uma ferramenta nova',
     description:
@@ -568,7 +566,6 @@ export const TEMPLATES = [
   // ══════════════════════════════════════════════════════════════════
   {
     key: 'relatorio-atividades',
-    plan: { offset: 4, duration: 7 },
     category: 'Registros',
     title: 'Relatório de atividades do período',
     description:
@@ -794,7 +791,6 @@ export const TEMPLATES = [
     color: '#ffb547',
     priority: 'critica',
     status: 'pausado',
-    plan: { offset: -1, duration: 37 },
     tags: ['educacross', 'tr', 'etp', 'contratacao'],
     groups: [
       {
@@ -876,7 +872,6 @@ export const TEMPLATES = [
 
   {
     key: 'educacross-negociacao',
-    plan: { offset: 37, duration: 59 },
     category: 'Educacross',
     title: 'Educacross — negociação e fechamento do contrato',
     description:
@@ -963,7 +958,6 @@ export const TEMPLATES = [
   // ══════════════════════════════════════════════════════════════════
   {
     key: 'revisao-itens',
-    plan: { offset: -7, duration: 6 },
     category: 'Revisão de Itens',
     title: 'Revisão de itens e aulas em vídeo',
     description:
@@ -1001,7 +995,6 @@ export const TEMPLATES = [
   // ══════════════════════════════════════════════════════════════════
   {
     key: 'orcamento-hardware',
-    plan: { offset: 7, duration: 39 },
     category: 'Hardware & Compras',
     title: 'Orçamento de hardware com carga tributária',
     description:
@@ -1192,20 +1185,6 @@ export const TEMPLATES = [
  * concluída — usado nos modelos que registram um caso em andamento, e não um
  * roteiro em branco.
  */
-/**
- * Converte `plan: { offset, duration }` (em dias, a partir de hoje) numa janela
- * de datas. Ancorar em hoje mantém o roadmap coerente em qualquer dia em que a
- * conta for aberta, em vez de nascer com data fixa que envelhece.
- */
-export function planDates(plan) {
-  if (!plan) return { start: '', end: '' }
-  const ini = today()
-  ini.setDate(ini.getDate() + plan.offset)
-  const fim = new Date(ini)
-  fim.setDate(fim.getDate() + plan.duration)
-  return { start: toISO(ini), end: toISO(fim) }
-}
-
 export function templateToWorkflow(tpl, overrides = {}) {
   const steps = []
   tpl.groups.forEach((g) => {
@@ -1222,10 +1201,9 @@ export function templateToWorkflow(tpl, overrides = {}) {
     priority: tpl.priority || 'media',
     color: tpl.color,
     tags: [...tpl.tags],
-    ...(() => {
-      const p = planDates(tpl.plan)
-      return { start: tpl.start || p.start, end: tpl.end || p.end }
-    })(),
+    // Sem prazo por padrão: as datas são definidas depois, no roadmap.
+    start: '',
+    end: '',
     steps,
     templateKey: tpl.key,
     createdAt: Date.now(),

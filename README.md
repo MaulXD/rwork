@@ -22,7 +22,7 @@ npm run preview  # serve o build de produção
 | **Painel** | Fluxos salvos, em andamento, etapas concluídas, atrasados. Foco atual, distribuição por status, próximos prazos e atividade recente. |
 | **Fluxos** | Todos os seus fluxos, com busca (título, descrição, etapa ou tag), filtro por status e tag, e ordenação por recentes / prazo / progresso / prioridade / A–Z. |
 | **Modelos** | Biblioteca de checklists prontos. "Usar modelo" cria uma cópia editável nos seus fluxos. |
-| **Roadmap** | Linha do tempo em meses. Cada barra vai do início à entrega, a parte preenchida é o progresso real das etapas e a linha rosa marca hoje. |
+| **Roadmap** | Duas partes: a **ordem de ataque** com os fluxos sem prazo, agrupados por prioridade, e a **linha do tempo** dos que já receberam datas. Nenhum fluxo nasce com prazo — as datas são definidas ali, quando você quiser. |
 | **Setup de PCs** | Checklist de preparação de notebook Linux no padrão Thep, com progresso por máquina, comandos prontos para copiar, download do `bloquear-sites.sh` e cadastro na planilha de inventário. |
 | **Treinamento TI** | Protocolo de treinamento do estagiário de TI: 7 blocos em 4 fases, com metas marcáveis, critérios de conclusão e checkpoints. |
 | **Ajustes** | Exportar/importar backup `.json`, recarregar os fluxos iniciais, apagar tudo, e controlar o fundo elétrico. |
@@ -61,7 +61,7 @@ npm run preview  # serve o build de produção
 ## Estrutura de um fluxo
 
 - título, descrição, cor, status (ideia / planejado / em andamento / pausado / concluído) e prioridade;
-- datas de início e entrega — é o que coloca o fluxo no roadmap;
+- datas de início e entrega, **em branco por padrão** — preenchê-las é o que move o fluxo da ordem de ataque para a linha do tempo;
 - tags livres;
 - **etapas** agrupadas em blocos, cada uma com checkbox e nota opcional.
 
